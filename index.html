@@ -1,238 +1,418 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>3D Pro Calculator</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>3D PRO Calculator</title>
 
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
 
-    body {
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background:
-        radial-gradient(circle at top, #243b55, #0b1020 55%, #05070d);
-      font-family: Arial, sans-serif;
-      color: white;
-    }
+body{
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:20px;
+  font-family:Arial,sans-serif;
+  color:#fff;
+  background:
+    radial-gradient(circle at 20% 10%,#263e69 0,transparent 35%),
+    radial-gradient(circle at 90% 90%,#162b55 0,transparent 35%),
+    #050811;
+}
 
-    .calculator {
-      width: 360px;
-      padding: 22px;
-      border-radius: 28px;
-      background: rgba(20, 27, 45, 0.92);
-      box-shadow:
-        0 25px 60px rgba(0,0,0,.6),
-        inset 0 1px 1px rgba(255,255,255,.12);
-      transform: perspective(900px) rotateX(3deg);
-    }
+.calculator{
+  width:min(430px,100%);
+  padding:22px;
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:30px;
+  background:rgba(16,23,39,.88);
+  backdrop-filter:blur(20px);
+  box-shadow:
+    0 35px 80px rgba(0,0,0,.65),
+    inset 0 1px rgba(255,255,255,.12);
+  transform:perspective(1000px) rotateX(2deg);
+}
 
-    .title {
-      text-align: center;
-      margin-bottom: 18px;
-    }
+.header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:18px;
+}
 
-    .title h1 {
-      font-size: 25px;
-      letter-spacing: 2px;
-    }
+.logo h1{
+  font-size:25px;
+  letter-spacing:3px;
+}
 
-    .title p {
-      color: #8ea4c7;
-      font-size: 12px;
-      margin-top: 5px;
-    }
+.logo span{
+  color:#5fa2ff;
+}
 
-    .display {
-      height: 105px;
-      padding: 18px;
-      margin-bottom: 18px;
-      border-radius: 18px;
-      background: #070b14;
-      box-shadow:
-        inset 0 8px 20px rgba(0,0,0,.7),
-        0 4px 12px rgba(0,0,0,.4);
-      text-align: right;
-      overflow: hidden;
-    }
+.logo p{
+  margin-top:4px;
+  color:#7e91ae;
+  font-size:11px;
+  letter-spacing:2px;
+}
 
-    #expression {
-      height: 30px;
-      color: #8294ad;
-      font-size: 16px;
-    }
+.mode{
+  display:flex;
+  gap:7px;
+}
 
-    #result {
-      margin-top: 8px;
-      font-size: 34px;
-      font-weight: bold;
-      color: #fff;
-    }
+.mode button{
+  width:44px;
+  height:38px;
+  border:0;
+  border-radius:12px;
+  background:#18243b;
+  color:#9fb2d1;
+  cursor:pointer;
+}
 
-    .buttons {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 12px;
-    }
+.mode button.active{
+  background:#1769e8;
+  color:#fff;
+}
 
-    button {
-      height: 60px;
-      border: none;
-      border-radius: 16px;
-      color: white;
-      font-size: 19px;
-      font-weight: bold;
-      cursor: pointer;
+.display{
+  min-height:125px;
+  padding:18px;
+  margin-bottom:18px;
+  border-radius:21px;
+  background:#050912;
+  border:1px solid rgba(255,255,255,.06);
+  box-shadow:
+    inset 0 10px 25px rgba(0,0,0,.65),
+    0 8px 20px rgba(0,0,0,.3);
+  text-align:right;
+  overflow:hidden;
+}
 
-      background: linear-gradient(145deg, #27344e, #111827);
+.expression{
+  min-height:30px;
+  color:#7186a6;
+  font-size:16px;
+  word-break:break-all;
+}
 
-      box-shadow:
-        5px 5px 10px rgba(0,0,0,.45),
-        -3px -3px 8px rgba(255,255,255,.04),
-        inset 0 1px 1px rgba(255,255,255,.08);
+.result{
+  margin-top:10px;
+  font-size:36px;
+  font-weight:bold;
+  word-break:break-all;
+  text-shadow:0 0 18px rgba(55,145,255,.35);
+}
 
-      transition: .15s;
-    }
+.scientific{
+  display:none;
+  grid-template-columns:repeat(4,1fr);
+  gap:10px;
+  margin-bottom:12px;
+}
 
-    button:active {
-      transform: translateY(4px) scale(.97);
-      box-shadow: inset 3px 3px 8px rgba(0,0,0,.5);
-    }
+.scientific.show{
+  display:grid;
+}
 
-    .operator {
-      background: linear-gradient(145deg, #344c70, #18263d);
-    }
+.scientific button{
+  height:48px;
+  border:0;
+  border-radius:13px;
+  color:#bcd3f5;
+  background:linear-gradient(145deg,#202e49,#111a2b);
+  cursor:pointer;
+}
 
-    .danger {
-      background: linear-gradient(145deg, #8d3030, #4d1717);
-    }
+.buttons{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:11px;
+}
 
-    .equal {
-      grid-column: span 2;
-      background: linear-gradient(145deg, #2676ff, #123d91);
-    }
+.buttons button{
+  height:60px;
+  border:0;
+  border-radius:17px;
+  color:white;
+  font-size:19px;
+  font-weight:bold;
+  cursor:pointer;
+  background:linear-gradient(145deg,#293750,#111a2c);
+  box-shadow:
+    5px 6px 12px rgba(0,0,0,.45),
+    inset 0 1px rgba(255,255,255,.08);
+  transition:.15s;
+}
 
-    .zero {
-      grid-column: span 2;
-    }
-  </style>
+button:hover{
+  filter:brightness(1.15);
+}
+
+button:active{
+  transform:translateY(4px) scale(.96);
+}
+
+.operator{
+  background:linear-gradient(145deg,#315b8e,#172d4d)!important;
+}
+
+.danger{
+  background:linear-gradient(145deg,#9b3838,#4e1919)!important;
+}
+
+.equal{
+  grid-column:span 2;
+  background:linear-gradient(145deg,#2780ff,#123d91)!important;
+}
+
+.zero{
+  grid-column:span 2;
+}
+
+@media(max-width:430px){
+  .calculator{padding:16px}
+  .buttons{gap:8px}
+  .buttons button{height:56px}
+  .scientific{gap:7px}
+}
+</style>
 </head>
 
 <body>
 
-  <div class="calculator">
+<div class="calculator">
 
-    <div class="title">
-      <h1>3D PRO</h1>
+  <div class="header">
+    <div class="logo">
+      <h1>3D <span>PRO</span></h1>
       <p>ADVANCED CALCULATOR</p>
     </div>
 
-    <div class="display">
-      <div id="expression"></div>
-      <div id="result">0</div>
+    <div class="mode">
+      <button id="basicBtn" class="active" onclick="setMode('basic')">B</button>
+      <button id="sciBtn" onclick="setMode('scientific')">SCI</button>
     </div>
+  </div>
 
-    <div class="buttons">
+  <div class="display">
+    <div id="expression" class="expression"></div>
+    <div id="result" class="result">0</div>
+  </div>
 
-      <button class="danger" onclick="clearDisplay()">AC</button>
-      <button onclick="deleteLast()">⌫</button>
-      <button onclick="addValue('%')">%</button>
-      <button class="operator" onclick="addValue('/')">÷</button>
+  <div id="scientific" class="scientific">
 
-      <button onclick="addValue('7')">7</button>
-      <button onclick="addValue('8')">8</button>
-      <button onclick="addValue('9')">9</button>
-      <button class="operator" onclick="addValue('*')">×</button>
+    <button onclick="scientific('sin')">sin</button>
+    <button onclick="scientific('cos')">cos</button>
+    <button onclick="scientific('tan')">tan</button>
+    <button onclick="scientific('sqrt')">√</button>
 
-      <button onclick="addValue('4')">4</button>
-      <button onclick="addValue('5')">5</button>
-      <button onclick="addValue('6')">6</button>
-      <button class="operator" onclick="addValue('-')">−</button>
+    <button onclick="scientific('log')">log</button>
+    <button onclick="scientific('ln')">ln</button>
+    <button onclick="scientific('square')">x²</button>
+    <button onclick="addValue('Math.PI')">π</button>
 
-      <button onclick="addValue('1')">1</button>
-      <button onclick="addValue('2')">2</button>
-      <button onclick="addValue('3')">3</button>
-      <button class="operator" onclick="addValue('+')">+</button>
-
-      <button class="zero" onclick="addValue('0')">0</button>
-      <button onclick="addValue('.')">.</button>
-
-      <button class="equal" onclick="calculate()">=</button>
-
-    </div>
+    <button onclick="addValue('(')">(</button>
+    <button onclick="addValue(')')">)</button>
+    <button onclick="scientific('inverse')">1/x</button>
+    <button onclick="scientific('factorial')">x!</button>
 
   </div>
 
+  <div class="buttons">
+
+    <button class="danger" onclick="clearDisplay()">AC</button>
+    <button onclick="deleteLast()">⌫</button>
+    <button onclick="addValue('%')">%</button>
+    <button class="operator" onclick="addValue('/')">÷</button>
+
+    <button onclick="addValue('7')">7</button>
+    <button onclick="addValue('8')">8</button>
+    <button onclick="addValue('9')">9</button>
+    <button class="operator" onclick="addValue('*')">×</button>
+
+    <button onclick="addValue('4')">4</button>
+    <button onclick="addValue('5')">5</button>
+    <button onclick="addValue('6')">6</button>
+    <button class="operator" onclick="addValue('-')">−</button>
+
+    <button onclick="addValue('1')">1</button>
+    <button onclick="addValue('2')">2</button>
+    <button onclick="addValue('3')">3</button>
+    <button class="operator" onclick="addValue('+')">+</button>
+
+    <button class="zero" onclick="addValue('0')">0</button>
+    <button onclick="addValue('.')">.</button>
+
+    <button class="equal" onclick="calculate()">=</button>
+
+  </div>
+
+</div>
+
 <script>
-  let expression = "";
+let expression="";
 
-  const expressionBox = document.getElementById("expression");
-  const resultBox = document.getElementById("result");
+const expressionBox=document.getElementById("expression");
+const resultBox=document.getElementById("result");
+const scientificBox=document.getElementById("scientific");
 
-  function addValue(value) {
-    expression += value;
-    expressionBox.textContent = expression;
+function addValue(value){
+  expression+=value;
+  expressionBox.textContent=expression;
+}
+
+function clearDisplay(){
+  expression="";
+  expressionBox.textContent="";
+  resultBox.textContent="0";
+}
+
+function deleteLast(){
+  expression=expression.slice(0,-1);
+  expressionBox.textContent=expression;
+}
+
+function calculate(){
+  try{
+    if(!expression)return;
+
+    let safe=expression.replace(/%/g,"/100");
+
+    let answer=Function(
+      '"use strict";return ('+safe+')'
+    )();
+
+    if(!Number.isFinite(answer))throw new Error();
+
+    resultBox.textContent=
+      Number.isInteger(answer)
+      ? answer
+      : Number(answer.toFixed(10));
+
+  }catch{
+    resultBox.textContent="Error";
+  }
+}
+
+function scientific(type){
+
+  try{
+
+    let value=Number(
+      expression ? Function(
+        '"use strict";return ('+
+        expression.replace(/%/g,"/100")+
+        ')'
+      )() : resultBox.textContent
+    );
+
+    let answer;
+
+    switch(type){
+
+      case "sin":
+        answer=Math.sin(value*Math.PI/180);
+        break;
+
+      case "cos":
+        answer=Math.cos(value*Math.PI/180);
+        break;
+
+      case "tan":
+        answer=Math.tan(value*Math.PI/180);
+        break;
+
+      case "sqrt":
+        answer=Math.sqrt(value);
+        break;
+
+      case "log":
+        answer=Math.log10(value);
+        break;
+
+      case "ln":
+        answer=Math.log(value);
+        break;
+
+      case "square":
+        answer=value**2;
+        break;
+
+      case "inverse":
+        answer=1/value;
+        break;
+
+      case "factorial":
+        answer=factorial(value);
+        break;
+    }
+
+    if(!Number.isFinite(answer))throw new Error();
+
+    expression=String(answer);
+    expressionBox.textContent=expression;
+    resultBox.textContent=answer;
+
+  }catch{
+    resultBox.textContent="Error";
+  }
+}
+
+function factorial(n){
+
+  if(n<0 || !Number.isInteger(n)){
+    throw new Error();
   }
 
-  function clearDisplay() {
-    expression = "";
-    expressionBox.textContent = "";
-    resultBox.textContent = "0";
+  let result=1;
+
+  for(let i=2;i<=n;i++){
+    result*=i;
   }
 
-  function deleteLast() {
-    expression = expression.slice(0, -1);
-    expressionBox.textContent = expression;
+  return result;
+}
+
+function setMode(mode){
+
+  if(mode==="scientific"){
+
+    scientificBox.classList.add("show");
+    document.getElementById("sciBtn").classList.add("active");
+    document.getElementById("basicBtn").classList.remove("active");
+
+  }else{
+
+    scientificBox.classList.remove("show");
+    document.getElementById("basicBtn").classList.add("active");
+    document.getElementById("sciBtn").classList.remove("active");
+
+  }
+}
+
+document.addEventListener("keydown",function(e){
+
+  if(/[0-9+\-*/.%]/.test(e.key)){
+    addValue(e.key);
   }
 
-  function calculate() {
-    try {
-      if (!expression) return;
-
-      const safeExpression = expression.replace(/%/g, "/100");
-
-      const answer = Function(
-        '"use strict"; return (' + safeExpression + ')'
-      )();
-
-      if (!Number.isFinite(answer)) {
-        throw new Error();
-      }
-
-      resultBox.textContent = answer;
-    } catch {
-      resultBox.textContent = "Error";
-    }
+  if(e.key==="Enter"){
+    calculate();
   }
 
-  document.addEventListener("keydown", function(event) {
+  if(e.key==="Backspace"){
+    deleteLast();
+  }
 
-    if (
-      /[0-9+\-*/.%]/.test(event.key)
-    ) {
-      addValue(event.key);
-    }
+  if(e.key==="Escape"){
+    clearDisplay();
+  }
 
-    if (event.key === "Enter") {
-      calculate();
-    }
-
-    if (event.key === "Backspace") {
-      deleteLast();
-    }
-
-    if (event.key === "Escape") {
-      clearDisplay();
-    }
-
-  });
+});
 </script>
 
 </body>
