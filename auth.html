@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>3D PRO Login</title>
+
+<style>
+*{
+  box-sizing:border-box;
+}
+
+body{
+  margin:0;
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-family:Arial,sans-serif;
+  color:white;
+  background:
+    radial-gradient(circle at top,#243b63,transparent 40%),
+    #050811;
+}
+
+.box{
+  width:min(390px,92%);
+  padding:30px;
+  border-radius:25px;
+  background:rgba(17,25,42,.92);
+  box-shadow:0 30px 70px rgba(0,0,0,.65);
+}
+
+h1{
+  text-align:center;
+  letter-spacing:3px;
+}
+
+.subtitle{
+  text-align:center;
+  color:#8193b0;
+  margin-bottom:25px;
+}
+
+input{
+  width:100%;
+  padding:15px;
+  margin:7px 0;
+  border:1px solid #263654;
+  border-radius:12px;
+  outline:none;
+  color:white;
+  background:#080e1a;
+}
+
+button{
+  width:100%;
+  padding:15px;
+  margin-top:12px;
+  border:0;
+  border-radius:13px;
+  color:white;
+  background:#1769e8;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+button:hover{
+  filter:brightness(1.15);
+}
+
+.switch{
+  text-align:center;
+  margin-top:18px;
+  color:#8fa2c1;
+}
+
+.switch span{
+  color:#55a0ff;
+  cursor:pointer;
+}
+
+#message{
+  text-align:center;
+  margin-top:15px;
+  color:#ff9d9d;
+}
+</style>
+</head>
+
+<body>
+
+<div class="box">
+
+<h1>3D PRO</h1>
+<div class="subtitle">SECURE ACCOUNT</div>
+
+<div id="registerForm">
+
+<input id="regUsername"
+       placeholder="Username">
+
+<input id="regEmail"
+       type="email"
+       placeholder="Email">
+
+<input id="regPassword"
+       type="password"
+       placeholder="Password (12+ characters)">
+
+<button onclick="register()">
+Create Account
+</button>
+
+<div class="switch">
+Already have an account?
+<span onclick="showLogin()">Login</span>
+</div>
+
+</div>
+
+<div id="loginForm" style="display:none">
+
+<input id="loginEmail"
+       type="email"
+       placeholder="Email">
+
+<input id="loginPassword"
+       type="password"
+       placeholder="Password">
+
+<button onclick="login()">
+Login
+</button>
+
+<div class="switch">
+Don't have an account?
+<span onclick="showRegister()">Register</span>
+</div>
+
+</div>
+
+<div id="message"></div>
+
+</div>
+
+<script>
+
+const message =
+document.getElementById("message");
+
+function showLogin(){
+
+  document.getElementById("registerForm")
+    .style.display="none";
+
+  document.getElementById("loginForm")
+    .style.display="block";
+
+  message.textContent="";
+}
+
+function showRegister(){
+
+  document.getElementById("loginForm")
+    .style.display="none";
+
+  document.getElementById("registerForm")
+    .style.display="block";
+
+  message.textContent="";
+}
+
+async function register(){
+
+  const username =
+    document.getElementById("regUsername").value;
+
+  const email =
+    document.getElementById("regEmail").value;
+
+  const password =
+    document.getElementById("regPassword").value;
+
+  const response = await fetch(
+    "/api/register",
+    {
+      method:"POST",
+      headers:{
+        "Content-Type":"application/json"
+      },
+      body:JSON.stringify({
+        username,
+        email,
+        password
+      })
+    }
+  );
+
+  const data = await response.json();
+
+  if(!response.ok){
+    message.textContent=data.error;
+    return;
+  }
+
+  location.href="/";
+}
+
+async function login(){
+
+  const email =
+    document.getElementById("loginEmail").value;
+
+  const password =
+    document.getElementById("loginPassword").value;
+
+  const response = await fetch(
+    "/api/login",
+    {
+      method:"POST",
+      headers:{
+        "Content-Type":"application/json"
+      },
+      body:JSON.stringify({
+        email,
+        password
+      })
+    }
+  );
+
+  const data = await response.json();
+
+  if(!response.ok){
+    message.textContent=data.error;
+    return;
+  }
+
+  location.href="/";
+}
+
+</script>
+
+</body>
+</html>
