@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Signal Hackers CSB — ফেসবুক রিপোর্ট লিংক ও অতিরিক্ত তথ্য</title>
+    <title>Signal Hackers CSB — ফেসবুক ও ইনস্টাগ্রাম রিপোর্ট পোর্টাল</title>
     <style>
         :root {
             --bg-color: #07090f;
@@ -22,83 +22,51 @@
             background-color: var(--bg-color);
             color: var(--text-main);
             margin: 0;
-            padding: 15px;
+            padding: 12px;
             padding-bottom: 70px;
         }
         .container {
-            max-width: 900px;
+            max-width: 1000px;
             margin: 0 auto;
         }
         .header {
             text-align: center;
-            padding: 20px 10px;
+            padding: 10px;
             border-bottom: 1px solid var(--card-border);
-            margin-bottom: 20px;
+            margin-bottom: 12px;
         }
         .header h1 {
-            font-size: 20px;
+            font-size: 16px;
             color: #ffffff;
-            margin: 0 0 8px 0;
+            margin: 0 0 4px 0;
         }
         .header p {
-            font-size: 12px;
+            font-size: 10px;
             color: var(--text-muted);
-            line-height: 1.5;
-            margin: 0;
+            line-height: 1.3;
+            margin: 0 0 8px 0;
         }
-        /* Helpline Top Banner */
-        .helpline-banner {
-            background: linear-gradient(135deg, #1e3a8a, #0f172a);
-            border: 1px solid #3b82f6;
-            border-radius: 8px;
-            padding: 12px 15px;
-            margin-bottom: 20px;
+        .stats-bar {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
+            justify-content: center;
             gap: 10px;
-        }
-        .helpline-info h4 {
-            margin: 0 0 4px 0;
-            font-size: 13px;
+            font-size: 10px;
             color: #60a5fa;
+            margin-bottom: 10px;
+            flex-wrap: wrap;
         }
-        .helpline-info p {
-            margin: 0;
-            font-size: 11px;
-            color: var(--text-muted);
-        }
-        .helpline-btns {
-            display: flex;
-            gap: 8px;
-        }
-        .hp-btn {
-            background-color: #2563eb;
-            color: #fff;
-            padding: 6px 10px;
-            border-radius: 4px;
-            font-size: 11px;
-            text-decoration: none;
-            font-weight: bold;
-            transition: background 0.2s;
-        }
-        .hp-btn.wa { background-color: #16a34a; }
-        .hp-btn.tg { background-color: #0284c7; }
-        .hp-btn:hover { opacity: 0.9; }
-
         .search-box {
             position: relative;
-            margin: 20px 0;
+            margin-bottom: 12px;
         }
         .search-box input {
             width: 100%;
-            padding: 12px 15px 12px 40px;
+            padding: 8px 12px 8px 32px;
             background-color: var(--card-bg);
             border: 1px solid var(--card-border);
-            border-radius: 8px;
+            border-radius: 6px;
             color: #fff;
-            font-size: 14px;
+            font-size: 12px;
             box-sizing: border-box;
             outline: none;
         }
@@ -107,53 +75,126 @@
         }
         .search-box svg {
             position: absolute;
-            left: 12px;
-            top: 14px;
-            width: 18px;
-            height: 18px;
+            left: 10px;
+            top: 10px;
+            width: 14px;
+            height: 14px;
             fill: var(--text-muted);
         }
+        
+        .controls-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .view-switcher {
+            display: flex;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 6px;
+            padding: 2px;
+        }
+        .view-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            font-size: 10px;
+            padding: 4px 8px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        .view-btn.active {
+            background: var(--accent);
+            color: #fff;
+            font-weight: bold;
+        }
+        
+        .categories-scroll {
+            display: flex;
+            gap: 6px;
+            overflow-x: auto;
+            padding-bottom: 8px;
+            margin-bottom: 12px;
+            white-space: nowrap;
+            -webkit-overflow-scrolling: touch;
+        }
+        .categories-scroll::-webkit-scrollbar {
+            height: 4px;
+        }
+        .categories-scroll::-webkit-scrollbar-thumb {
+            background: var(--card-border);
+            border-radius: 4px;
+        }
+        .cat-btn {
+            background-color: var(--card-bg);
+            border: 1px solid var(--card-border);
+            color: var(--text-muted);
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 11px;
+            cursor: pointer;
+            transition: all 0.2s;
+            flex-shrink: 0;
+        }
+        .cat-btn.active {
+            background-color: #1e293b;
+            color: #60a5fa;
+            border-color: var(--active-border);
+            font-weight: bold;
+        }
+
         .section-title {
-            font-size: 14px;
+            font-size: 11px;
             font-weight: bold;
             color: var(--text-muted);
-            margin-bottom: 12px;
+            margin-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
+
         .folder-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1fr;
             gap: 10px;
             margin-bottom: 20px;
         }
-        @media (max-width: 600px) {
+        @media (min-width: 600px) {
             .folder-grid {
-                grid-template-columns: 1fr;
+                grid-template-columns: 1fr 1fr;
             }
         }
-        .folder-card {
+
+        .folder-item {
             background-color: var(--card-bg);
             border: 1px solid var(--card-border);
             border-radius: 8px;
-            padding: 12px;
-            cursor: pointer;
-            transition: all 0.2s ease;
+            overflow: hidden;
+            transition: border-color 0.2s;
         }
-        .folder-card:hover {
-            background-color: var(--card-hover);
-            border-color: var(--active-border);
-        }
-        .folder-card.active {
+        .folder-item.active {
             border-color: var(--active-border);
             background-color: #111b2d;
         }
-        .folder-title-row {
+        
+        .folder-card {
+            padding: 10px 12px;
+            cursor: pointer;
             display: flex;
-            align-items: center;
+            flex-direction: column;
+            gap: 3px;
+        }
+        .folder-card:hover {
+            background-color: var(--card-hover);
+        }
+        .folder-top {
+            display: flex;
             justify-content: space-between;
-            margin-bottom: 4px;
+            align-items: center;
         }
         .folder-name {
-            font-size: 13px;
+            font-size: 12px;
             font-weight: bold;
             color: #fff;
             display: flex;
@@ -162,69 +203,78 @@
         }
         .badge {
             font-size: 9px;
-            padding: 2px 6px;
+            padding: 2px 5px;
             border-radius: 4px;
             background: #d97706;
             color: #fff;
             font-weight: bold;
         }
+        .badge.ig { background: #e1306c; }
+        .badge.fb { background: #1877f2; }
+
         .folder-desc {
-            font-size: 11px;
+            font-size: 10px;
+            color: #60a5fa;
+        }
+        .folder-sub {
+            font-size: 10px;
             color: var(--text-muted);
         }
-        .viewer-box {
-            background-color: var(--card-bg);
-            border: 1px solid var(--active-border);
-            border-radius: 10px;
-            padding: 15px;
-            margin-top: 20px;
-        }
-        .viewer-header {
-            font-size: 12px;
-            color: var(--text-muted);
-            margin-bottom: 10px;
-            border-bottom: 1px solid var(--card-border);
-            padding-bottom: 8px;
-        }
-        .content-block {
+
+        .inline-viewer {
+            display: none;
+            padding: 10px;
             background-color: #04060a;
+            border-top: 1px solid var(--card-border);
+            grid-column: 1 / -1;
+        }
+        .folder-item.active .inline-viewer {
+            display: block;
+        }
+
+        .content-block {
+            background-color: var(--card-bg);
             border: 1px solid var(--card-border);
             border-radius: 6px;
-            padding: 12px;
-            margin-bottom: 12px;
+            padding: 8px;
+            margin-bottom: 8px;
             position: relative;
         }
+        .content-block:last-child {
+            margin-bottom: 0;
+        }
         .block-label {
-            font-size: 11px;
+            font-size: 9px;
             color: var(--text-muted);
             text-transform: uppercase;
-            margin-bottom: 6px;
+            margin-bottom: 3px;
         }
         .block-value {
-            font-size: 13px;
+            font-size: 10px;
             color: #60a5fa;
             word-break: break-all;
-            margin-bottom: 10px;
+            margin-bottom: 6px;
         }
         .block-value.text-area {
             color: var(--text-main);
             font-family: monospace;
             white-space: pre-wrap;
-            font-size: 12px;
-            max-height: 150px;
+            font-size: 10px;
+            max-height: 100px;
             overflow-y: auto;
         }
         .copy-btn {
             background-color: var(--accent);
             color: #fff;
             border: none;
-            padding: 6px 12px;
+            padding: 3px 7px;
             border-radius: 4px;
-            font-size: 11px;
+            font-size: 9px;
             font-weight: bold;
             cursor: pointer;
-            transition: background 0.2s;
             float: right;
+            text-decoration: none;
+            display: inline-block;
         }
         .copy-btn:hover {
             background-color: var(--accent-hover);
@@ -237,174 +287,401 @@
             clear: both;
             display: table;
         }
+
         /* Floating Helpline Button */
         .float-helpline {
             position: fixed;
-            bottom: 15px;
-            right: 15px;
+            bottom: 12px;
+            right: 12px;
             background-color: #16a34a;
             color: white;
-            padding: 10px 16px;
-            border-radius: 30px;
-            font-size: 12px;
+            padding: 8px 14px;
+            border-radius: 25px;
+            font-size: 11px;
             font-weight: bold;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-            text-decoration: none;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.4);
+            cursor: pointer;
             z-index: 1000;
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 5px;
+            border: none;
         }
+
+        /* Modal Overlay */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            padding: 12px;
+            box-sizing: border-box;
+        }
+        .modal-content {
+            background-color: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 10px;
+            width: 100%;
+            max-width: 380px;
+            padding: 16px;
+            position: relative;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+        }
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+            border-bottom: 1px solid var(--card-border);
+            padding-bottom: 8px;
+        }
+        .modal-title {
+            font-size: 13px;
+            font-weight: bold;
+            color: #fff;
+        }
+        .close-modal {
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            font-size: 15px;
+            cursor: pointer;
+        }
+        .contact-option {
+            background: #04060a;
+            border: 1px solid var(--card-border);
+            padding: 10px;
+            border-radius: 6px;
+            margin-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .contact-info span {
+            display: block;
+        }
+        .contact-name {
+            font-size: 11px;
+            font-weight: bold;
+            color: #fff;
+        }
+        .contact-sub {
+            font-size: 9px;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+        .action-btn {
+            background: var(--accent);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 9px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .action-btn.wa { background: #16a34a; }
+        .action-btn.tg { background: #0284c7; }
+        .action-btn.fb { background: #1877f2; }
     </style>
 </head>
 <body>
 
 <div class="container">
     <div class="header">
-        <h1>Signal Hackers CSB — ফেসবুক রিপোর্ট লিংক ও অতিরিক্ত তথ্য</h1>
-        <p>নকল প্রোফাইল, হ্যাকড আইডি, হয়রানি, কপিরাইট ও আইডি ডিজএবল সমস্যার জন্য ফেসবুকের অফিসিয়াল লিংক এবং দ্রুত অ্যাকশন পেতে নিখুঁত ইংরেজি "Additional Info" ক্লিপ এক ক্লিকে কপি করুন।</p>
-    </div>
-
-    <!-- Helpline Banner -->
-    <div class="helpline-banner">
-        <div class="helpline-info">
-            <h4>📞 হেল্পলাইন ও সরাসরি যোগাযোগ</h4>
-            <p>যেকোনো সহায়তার জন্য আমাদের সাথে যোগাযোগ করুন</p>
-        </div>
-        <div class="helpline-btns">
-            <a href="https://wa.me/8801679164271" target="_blank" class="hp-btn wa">WhatsApp</a>
-            <a href="https://t.me/Signalhackers" target="_blank" class="hp-btn tg">Telegram</a>
-            <a href="https://www.facebook.com/signalhackerscsb6474?mibextid=ZbWKwL" target="_blank" class="hp-btn">Facebook</a>
+        <h1>Signal Hackers CSB — ফেসবুক ও ইনস্টাগ্রাম রিপোর্ট পোর্টাল</h1>
+        <p>আপনার সুবিধার্থে ফেসবুক এবং ইনস্টাগ্রামের সমস্ত অফিশিয়াল রিপোর্ট ফর্ম আলাদা ক্যাটাগরিতে সাজানো হয়েছে।</p>
+        <div class="stats-bar">
+            <span>🛡️ অফিসিয়াল ফর্ম ও হেল্পলাইন</span>
+            <span>⚡ ১০০% পলিসি মানসম্মত স্ক্রিপ্ট</span>
         </div>
     </div>
 
     <div class="search-box">
         <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
-        <input type="text" id="searchInput" placeholder="সমস্যার নাম, ফোল্ডার, ফর্ম নম্বর দিয়ে খুঁজুন (যেমন: Deformation, Hacked, Copyright)..." onkeyup="searchFolders()">
+        <input type="text" id="searchInput" placeholder="সমস্যার নাম বা লিংক লিখে খুঁজুন..." onkeyup="filterFolders()">
     </div>
 
-    <div class="section-title">📂 রিপোর্ট ফোল্ডার নির্বাচন করুন (চাপ দিয়ে খুলুন):</div>
+    <div class="controls-row">
+        <div class="view-switcher">
+            <button class="view-btn active" onclick="switchView('grid', event)">📁 ফোল্ডার</button>
+            <button class="view-btn" onclick="switchView('card', event)">🗂️ কার্ড ভিউ</button>
+        </div>
+    </div>
+
+    <!-- Category Filter Buttons -->
+    <div class="categories-scroll">
+        <button class="cat-btn active" onclick="filterCat('all', event)">📂 সকল সমস্যা</button>
+        <button class="cat-btn" onclick="filterCat('facebook', event)">📘 ফেসবুক রিপোর্ট</button>
+        <button class="cat-btn" onclick="filterCat('instagram', event)">📸 ইনস্টাগ্রাম রিপোর্ট</button>
+        <button class="cat-btn" onclick="filterCat('helpline', event)">📞 হেল্পলাইন</button>
+    </div>
+
+    <div class="section-title">
+        <span>📂 রিপোর্ট ফোল্ডারসমূহ:</span>
+        <span id="totalCount" style="color: #60a5fa;">প্রাপ্ত</span>
+    </div>
 
     <div class="folder-grid" id="folderGrid">
-        <div class="folder-card active" onclick="loadContent('1')">
-            <div class="folder-title-row">
-                <span class="folder-name">📁 Deformation Report Facebook</span>
-                <span class="badge">Featured</span>
-            </div>
-            <div class="folder-desc">Contact Form 430253071144967</div>
-        </div>
-
-        <div class="folder-card" onclick="loadContent('2')">
-            <div class="folder-title-row">
-                <span class="folder-name">📁 Hacked Account Recovery</span>
-            </div>
-            <div class="folder-desc">Account Security / Recovery Portal</div>
-        </div>
-
-        <div class="folder-card" onclick="loadContent('3')">
-            <div class="folder-title-row">
-                <span class="folder-name">📁 Copyright Update</span>
-                <span class="badge" style="background:#b91c1c;">Copyright</span>
-            </div>
-            <div class="folder-desc">Meta Request 1523801815366035</div>
-        </div>
-
-        <div class="folder-card" onclick="loadContent('4')">
-            <div class="folder-title-row">
-                <span class="folder-name">📁 Impersonator (No Account Required)</span>
-            </div>
-            <div class="folder-desc">Contact Form 169486816475808</div>
-        </div>
-
-        <div class="folder-card" onclick="loadContent('5')">
-            <div class="folder-title-row">
-                <span class="folder-name">📁 Trademark Protection</span>
-            </div>
-            <div class="folder-desc">Contact Form 63436770043106</div>
-        </div>
-
-        <div class="folder-card" onclick="loadContent('6')">
-            <div class="folder-title-row">
-                <span class="folder-name">📁 Disabled ID Appeal</span>
-            </div>
-            <div class="folder-desc">Contact Form 260749603972907</div>
-        </div>
-    </div>
-
-    <div class="viewer-box" id="viewerBox">
-        <div class="viewer-header" id="viewerHeader">FOLDER VIEW — CONTACT FORM 430253071144967</div>
-        
-        <div class="content-block clearfix">
-            <div class="block-label">🔗 From Link (অফিশিয়াল ফর্ম লিংক):</div>
-            <div class="block-value" id="vLink">https://www.facebook.com/help/contact/430253071144967</div>
-            <button class="copy-btn" onclick="copyContent('vLink', this)">ফর্ম লিংক কপি করুন</button>
-        </div>
-
-        <div class="content-block clearfix">
-            <div class="block-label">📝 Additional (অফিশিয়াল অতিরিক্ত বিবরণ):</div>
-            <div class="block-value text-area" id="vInfo">Attention Meta Security Operations & Account Integrity Team,
-
-My profile / content has been unlawfully targeted and defamed through unauthorized impersonation and false representation. This violates community standards regarding harassment and malicious defamation.
-
-- Target Profile / Link: [TARGET_LINK]
-- Issue Description: Defamation and unauthorized use of identity.
-- Requested Action: Immediate review and permanent removal of the violating content/profile.</div>
-            <button class="copy-btn" onclick="copyContent('vInfo', this)">Additional কপি করুন</button>
-        </div>
+        <!-- Folders injected via JS -->
     </div>
 
 </div>
 
-<!-- Floating WhatsApp Helpline Button -->
-<a href="https://wa.me/8801679164271" target="_blank" class="float-helpline">
-    💬 হেল্পলাইন (WhatsApp)
-</a>
+<!-- Floating Helpline Button -->
+<button class="float-helpline" onclick="toggleModal(true)">
+    💬 হেল্পলাইন
+</button>
+
+<!-- Contact Modal -->
+<div class="modal-overlay" id="contactModal" onclick="handleModalClick(event)">
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="modal-title">📞 Signal Hackers CSB হেল্পলাইন</span>
+            <button class="close-modal" onclick="toggleModal(false)">✕</button>
+        </div>
+        
+        <div class="contact-option">
+            <div class="contact-info">
+                <span class="contact-name">WhatsApp Support</span>
+                <span class="contact-sub">01679164271</span>
+            </div>
+            <a href="https://wa.me/8801679164271" target="_blank" class="action-btn wa">ওপেন</a>
+        </div>
+
+        <div class="contact-option">
+            <div class="contact-info">
+                <span class="contact-name">Telegram Channel</span>
+                <span class="contact-sub">@Signalhackers</span>
+            </div>
+            <a href="https://t.me/Signalhackers" target="_blank" class="action-btn tg">ওপেন</a>
+        </div>
+
+        <div class="contact-option">
+            <div class="contact-info">
+                <span class="contact-name">Facebook Page</span>
+                <span class="contact-sub">Official CSB Page</span>
+            </div>
+            <a href="https://www.facebook.com/signalhackerscsb6474" target="_blank" class="action-btn fb">ওপেন</a>
+        </div>
+    </div>
+</div>
 
 <script>
-    const reportData = {
-        '1': {
-            header: "FOLDER VIEW — CONTACT FORM 430253071144967",
+    const reportData = [
+        {
+            id: 'ig_1',
+            cat: 'instagram',
+            name: "Instagram Impersonation Report",
+            desc: "Report Accounts Impersonating You on IG",
+            sub: "ইনস্টাগ্রাম ফেক ও নকল আইডি রিপোর্ট ফর্ম",
+            badge: "Instagram",
+            badgeClass: "ig",
+            link: "https://help.instagram.com/contact/636276399721841",
+            info: "Instagram Support Team,\n\nThis Instagram account is explicitly impersonating my identity and deceiving other users.\n\n- Fake Instagram Profile: [FAKE_IG_URL]\n- Real Account Profile: [REAL_IG_URL]"
+        },
+        {
+            id: 'ig_2',
+            cat: 'instagram',
+            name: "Instagram Hacked Account Recovery",
+            desc: "Recover Compromised Instagram Profile",
+            sub: "হ্যাকড ইনস্টাগ্রাম অ্যাকাউন্ট পুনরুদ্ধার পোর্টাল",
+            badge: "Instagram",
+            badgeClass: "ig",
+            link: "https://www.instagram.com/accounts/login/troubleshoot/",
+            info: "Instagram Security Team,\n\nMy Instagram account has been compromised by an unauthorized individual who altered login credentials.\n\n- Compromised Username/URL: [IG_USERNAME]"
+        },
+        {
+            id: 'ig_3',
+            cat: 'instagram',
+            name: "Instagram Underage Report",
+            desc: "Report Minor Under 13 on Instagram",
+            sub: "১৩ বছরের কম বয়সী ইনস্টাগ্রাম ইউজার রিপোর্ট",
+            badge: "Instagram",
+            badgeClass: "ig",
+            link: "https://help.instagram.com/contact/155054717865239",
+            info: "Instagram Safety Team,\n\nReporting an Instagram account belonging to an underage user under 13 years old.\n\n- Profile URL: [IG_URL]"
+        },
+        {
+            id: 'ig_4',
+            cat: 'instagram',
+            name: "Instagram Privacy & Harassment",
+            desc: "Report Bullying or Privacy Violations on IG",
+            sub: "ইনস্টাগ্রাম হয়রানি ও প্রাইভেসি ভায়োলেশন রিপোর্ট",
+            badge: "Instagram",
+            badgeClass: "ig",
+            link: "https://help.instagram.com/contact/383583222030611",
+            info: "Instagram Trust & Safety Team,\n\nReporting abusive behaviour, harassment, or private media distribution on Instagram.\n\n- Violating Post/Profile URL: [IG_URL]"
+        },
+        {
+            id: 'fb_1',
+            cat: 'facebook',
+            name: "Deformation Report Facebook",
+            desc: "Contact Form 430253071144967",
+            sub: "মানহানি ও ক্যারেক্টার অ্যাসাসিনেশন রিপোর্ট",
+            badge: "Facebook",
+            badgeClass: "fb",
             link: "https://www.facebook.com/help/contact/430253071144967",
-            info: `Attention Meta Security Operations & Account Integrity Team,\n\nMy profile / content has been unlawfully targeted and defamed through unauthorized impersonation and false representation. This violates community standards regarding harassment and malicious defamation.\n\n- Target Profile / Link: [TARGET_LINK]\n- Issue Description: Defamation and unauthorized use of identity.\n- Requested Action: Immediate review and permanent removal of the violating content/profile.`
+            info: "Dear Meta Support Team,\n\nI am reporting severe defamation, character assassination, and unauthorized use of personal identity targeting my profile.\n\n- Target Link: [TARGET_LINK]"
         },
-        '2': {
-            header: "FOLDER VIEW — ACCOUNT SECURITY / RECOVERY PORTAL",
+        {
+            id: 'fb_2',
+            cat: 'facebook',
+            name: "Impersonation Profile Report",
+            desc: "Contact Form 295309487309948",
+            sub: "নকল বা ফেক ফেসবুক প্রোফাইল রিমুভ",
+            badge: "Facebook",
+            badgeClass: "fb",
+            link: "https://www.facebook.com/help/contact/295309487309948",
+            info: "Dear Meta Support,\n\nThis fraudulent account is actively impersonating me, using my name and photos to deceive people.\n\n- Fake Profile Link: [FAKE_URL]\n- Authentic Profile Link: [REAL_URL]"
+        },
+        {
+            id: 'fb_3',
+            cat: 'facebook',
+            name: "Hacked Account Recovery",
+            desc: "Account Security / Recovery Portal",
+            sub: "হ্যাকড ফেসবুক আইডি পুনরুদ্ধারের পোর্টাল",
+            badge: "Facebook",
+            badgeClass: "fb",
             link: "https://www.facebook.com/hacked",
-            info: `Attention Meta Security Operations & Account Integrity Team,\n\nMy Facebook account has suffered an unauthorized takeover by an unverified third party. The unauthorized intruder has maliciously detached my registered contact credentials (Email / Phone Number) and altered account parameters.\n\n- Original Account Profile URL: [ORIGINAL_PROFILE_URL]\n- Registered Original Email / Phone: [OLD_EMAIL_OR_PHONE]\n- Estimated Date of Breach: [BREACH_DATE_TIME]\n- Unauthorized Changes Observed: Password altered, secondary 2FA code blocked, recovery email replaced with unknown address.`
+            info: "Dear Meta Security Team,\n\nMy personal account has been hijacked and compromised by an unauthorized actor who changed my login credentials.\n\n- Compromised Account URL: [URL]"
         },
-        '3': {
-            header: "FOLDER VIEW — META REQUEST 1523801815366035",
-            link: "https://www.facebook.com/help/contact/1523801815366035",
-            info: `Dear Meta Copyright Agent,\n\nI am writing to report a direct copyright infringement of my original intellectual property (content/image/video) posted on Facebook without my explicit consent or authorization.\n\n- Original Content Proof: [ORIGINAL_LINK]\n- Infringing URL: [INFRINGER_URL]\n- Statement: I have a good faith belief that the use of the copyrighted material is not authorized by the copyright owner.`
-        },
-        '4': {
-            header: "FOLDER VIEW — CONTACT FORM 169486816475808",
-            link: "https://www.facebook.com/help/contact/169486816475808",
-            info: `Hello Meta Support Team,\n\nSomeone is impersonating me on Facebook by creating a fake profile using my personal photos and name to deceive others and damage my reputation.\n\n- Fake Profile URL: [FAKE_PROFILE_URL]\n- Real Profile URL: [REAL_PROFILE_URL]\n- Requested Action: Verify and disable the impersonating account immediately.`
-        },
-        '5': {
-            header: "FOLDER VIEW — CONTACT FORM 63436770043106",
-            link: "https://www.facebook.com/help/contact/63436770043106",
-            info: `Dear Meta Trademark Support Team,\n\nI am reporting an unauthorized infringement of my registered trademark. The reported profile/page is misleading users by using intellectual property without authorization.\n\n- Infringing URL: [INFRACTION_URL]\n- Trademark Registration Details: [TRADEMARK_DETAILS]\n- Requested Action: Takedown of the unauthorized entity.`
-        },
-        '6': {
-            header: "FOLDER VIEW — CONTACT FORM 260749603972907",
+        {
+            id: 'fb_4',
+            cat: 'facebook',
+            name: "Disabled ID Appeal",
+            desc: "Contact Form 260749603972907",
+            sub: "ডিজেবল ফেসবুক আইডি ফিরিয়ে আনার আপিল",
+            badge: "Facebook",
+            badgeClass: "fb",
             link: "https://www.facebook.com/help/contact/260749603972907",
-            info: `Dear Meta Support Team,\n\nMy personal Facebook account has been disabled mistakenly without any prior notice or valid reason. I strictly follow the Community Standards and Terms of Service.\n\n- Account Profile URL: [PROFILE_URL]\n- Registered Email/Phone: [EMAIL_OR_PHONE]\n- Request: Please review my account and restore access.`
+            info: "Dear Meta Review Team,\n\nMy personal Facebook account was incorrectly disabled due to an automated error. Please restore access.\n\n- Profile URL: [URL]"
+        },
+        {
+            id: 'fb_5',
+            cat: 'facebook',
+            name: "Copyright Infringement Report",
+            desc: "Meta Request 1523801815366035",
+            sub: "কপিরাইট ও ইন্টেলেকচুয়াল প্রপার্টি রিপোর্ট",
+            badge: "Facebook",
+            badgeClass: "fb",
+            link: "https://www.facebook.com/help/contact/1523801815366035",
+            info: "Dear Meta Copyright Agent,\n\nI am reporting direct copyright infringement of intellectual property owned by me.\n\n- Original Proof: [ORIGINAL_LINK]\n- Infringing URL: [INFRINGER_URL]"
+        },
+        {
+            id: 'fb_6',
+            cat: 'facebook',
+            name: "Legal Removal Request",
+            desc: "Contact Form 319149701968527",
+            sub: "আইনি অপসারণ অনুরোধ (Legal Request)",
+            badge: "Facebook",
+            badgeClass: "fb",
+            link: "https://www.facebook.com/help/contact/319149701968527",
+            info: "Dear Meta Legal Team,\n\nI am submitting a formal legal removal request for content that infringes upon legal rights and violates safety policies.\n\n- Infringing URL: [URL]"
+        },
+        {
+            id: 'hl_1',
+            cat: 'helpline',
+            name: "Help Line - Signal Hackers CSB",
+            desc: "Direct Support Channels",
+            sub: "Telegram: @Signalhackers • WhatsApp: 01679164271",
+            badge: "Helpline",
+            badgeClass: "",
+            link: "https://wa.me/8801679164271",
+            info: "সরাসরি যোগাযোগের মাধ্যম (WhatsApp - Telegram - Facebook):\n- WhatsApp: https://wa.me/8801679164271\n- Telegram: https://t.me/Signalhackers\n- Facebook: https://www.facebook.com/signalhackerscsb6474"
         }
-    };
+    ];
 
-    function loadContent(id) {
-        const cards = document.querySelectorAll('.folder-card');
-        cards.forEach(c => c.classList.remove('active'));
-        event.currentTarget.classList.add('active');
+    let currentCat = 'all';
 
-        document.getElementById('viewerHeader').innerText = reportData[id].header;
-        document.getElementById('vLink').innerText = reportData[id].link;
-        document.getElementById('vInfo').innerText = reportData[id].info;
+    function renderFolders(data) {
+        const grid = document.getElementById('folderGrid');
+        grid.innerHTML = '';
+
+        let filtered = data.filter(item => {
+            if (currentCat !== 'all' && item.cat !== currentCat) return false;
+            return true;
+        });
+
+        document.getElementById('totalCount').innerText = filtered.length + ' টি প্রাপ্ত';
+
+        if(filtered.length === 0) {
+            grid.innerHTML = '<div style="grid-column: 1/-1; text-align: center; color: var(--text-muted); padding: 20px; font-size: 12px;">কোনো ফোল্ডার পাওয়া যায়নি!</div>';
+            return;
+        }
+
+        filtered.forEach(item => {
+            const div = document.createElement('div');
+            div.className = 'folder-item';
+            div.setAttribute('data-search', (item.name + ' ' + item.desc + ' ' + item.sub).toLowerCase());
+            
+            div.innerHTML = `
+                <div class="folder-card" onclick="toggleFolder(this)">
+                    <div class="folder-top">
+                        <span class="folder-name">📁 ${item.name}</span>
+                        ${item.badge ? `<span class="badge ${item.badgeClass \vert{}\vert{} ''}">${item.badge}</span>` : ''}
+                    </div>
+                    <div class="folder-desc">${item.desc}</div>
+                    <div class="folder-sub">${item.sub}</div>
+                </div>
+                <div class="inline-viewer">
+                    <div class="content-block clearfix">
+                        <div class="block-label">🔗 FROM LINK (অফিশিয়াল ফর্ম লিংক):</div>
+                        <div class="block-value" id="link_${item.id}">${item.link}</div>
+                        <button class="copy-btn" onclick="copyText('link_${item.id}', this)">লিংক কপি</button>
+                    </div>
+                    <div class="content-block clearfix">
+                        <div class="block-label">📝 ADDITIONAL (অতিরিক্ত বিবরণ):</div>
+                        <div class="block-value text-area" id="info_${item.id}">${item.info}</div>
+                        <button class="copy-btn" onclick="copyText('info_${item.id}', this)">টেক্সট কপি</button>
+                    </div>
+                </div>
+            `;
+            grid.appendChild(div);
+        });
     }
 
-    function copyContent(elementId, btn) {
+    function toggleFolder(element) {
+        const item = element.parentElement;
+        const isActive = item.classList.contains('active');
+        
+        document.querySelectorAll('.folder-item').forEach(el => {
+            el.classList.remove('active');
+        });
+
+        if (!isActive) {
+            item.classList.add('active');
+        }
+    }
+
+    function filterCat(cat, event) {
+        currentCat = cat;
+        document.querySelectorAll('.cat-btn').forEach(btn => btn.classList.remove('active'));
+        if(event && event.currentTarget) {
+            event.currentTarget.classList.add('active');
+        }
+        renderFolders(reportData);
+    }
+
+    function switchView(view, event) {
+        if(event && event.currentTarget) {
+            document.querySelectorAll('.view-btn').forEach(btn => btn.classList.remove('active'));
+            event.currentTarget.classList.add('active');
+        }
+        const grid = document.getElementById('folderGrid');
+        if(view === 'card') {
+            grid.style.gridTemplateColumns = '1fr';
+        } else {
+            grid.style.gridTemplateColumns = window.innerWidth >= 600 ? '1fr 1fr' : '1fr';
+        }
+    }
+
+    function copyText(elementId, btn) {
         const text = document.getElementById(elementId).innerText;
         navigator.clipboard.writeText(text).then(() => {
             const originalText = btn.innerText;
@@ -417,19 +694,33 @@ My profile / content has been unlawfully targeted and defamed through unauthoriz
         });
     }
 
-    function searchFolders() {
+    function filterFolders() {
         let input = document.getElementById('searchInput').value.toLowerCase();
-        let cards = document.getElementsByClassName('folder-card');
+        let items = document.getElementsByClassName('folder-item');
         
-        for (let i = 0; i < cards.length; i++) {
-            let text = cards[i].innerText.toLowerCase();
-            if (text.includes(input)) {
-                cards[i].style.display = "";
+        for (let i = 0; i < items.length; i++) {
+            let searchStr = items[i].getAttribute('data-search');
+            if (searchStr.includes(input)) {
+                items[i].style.display = "";
             } else {
-                cards[i].style.display = "none";
+                items[i].style.display = "none";
             }
         }
     }
+
+    function toggleModal(show) {
+        const modal = document.getElementById('contactModal');
+        modal.style.display = show ? 'flex' : 'none';
+    }
+
+    function handleModalClick(event) {
+        if (event.target === document.getElementById('contactModal')) {
+            toggleModal(false);
+        }
+    }
+
+    // Initial render on load
+    renderFolders(reportData);
 </script>
 
 </body>
