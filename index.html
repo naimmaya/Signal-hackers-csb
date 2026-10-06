@@ -1,418 +1,435 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="bn">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>3D PRO Calculator</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signal Hackers CSB — ফেসবুক রিপোর্ট লিংক ও অতিরিক্ত তথ্য</title>
+    <style>
+        :root {
+            --bg-color: #07090f;
+            --card-bg: #0d131f;
+            --card-border: #1e293b;
+            --card-hover: #162238;
+            --active-border: #3b82f6;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+            --accent: #2563eb;
+            --accent-hover: #1d4ed8;
+            --success: #16a34a;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            margin: 0;
+            padding: 15px;
+            padding-bottom: 70px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .header {
+            text-align: center;
+            padding: 20px 10px;
+            border-bottom: 1px solid var(--card-border);
+            margin-bottom: 20px;
+        }
+        .header h1 {
+            font-size: 20px;
+            color: #ffffff;
+            margin: 0 0 8px 0;
+        }
+        .header p {
+            font-size: 12px;
+            color: var(--text-muted);
+            line-height: 1.5;
+            margin: 0;
+        }
+        /* Helpline Top Banner */
+        .helpline-banner {
+            background: linear-gradient(135deg, #1e3a8a, #0f172a);
+            border: 1px solid #3b82f6;
+            border-radius: 8px;
+            padding: 12px 15px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .helpline-info h4 {
+            margin: 0 0 4px 0;
+            font-size: 13px;
+            color: #60a5fa;
+        }
+        .helpline-info p {
+            margin: 0;
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+        .helpline-btns {
+            display: flex;
+            gap: 8px;
+        }
+        .hp-btn {
+            background-color: #2563eb;
+            color: #fff;
+            padding: 6px 10px;
+            border-radius: 4px;
+            font-size: 11px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background 0.2s;
+        }
+        .hp-btn.wa { background-color: #16a34a; }
+        .hp-btn.tg { background-color: #0284c7; }
+        .hp-btn:hover { opacity: 0.9; }
 
-<style>
-*{box-sizing:border-box;margin:0;padding:0}
-
-body{
-  min-height:100vh;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  padding:20px;
-  font-family:Arial,sans-serif;
-  color:#fff;
-  background:
-    radial-gradient(circle at 20% 10%,#263e69 0,transparent 35%),
-    radial-gradient(circle at 90% 90%,#162b55 0,transparent 35%),
-    #050811;
-}
-
-.calculator{
-  width:min(430px,100%);
-  padding:22px;
-  border:1px solid rgba(255,255,255,.1);
-  border-radius:30px;
-  background:rgba(16,23,39,.88);
-  backdrop-filter:blur(20px);
-  box-shadow:
-    0 35px 80px rgba(0,0,0,.65),
-    inset 0 1px rgba(255,255,255,.12);
-  transform:perspective(1000px) rotateX(2deg);
-}
-
-.header{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin-bottom:18px;
-}
-
-.logo h1{
-  font-size:25px;
-  letter-spacing:3px;
-}
-
-.logo span{
-  color:#5fa2ff;
-}
-
-.logo p{
-  margin-top:4px;
-  color:#7e91ae;
-  font-size:11px;
-  letter-spacing:2px;
-}
-
-.mode{
-  display:flex;
-  gap:7px;
-}
-
-.mode button{
-  width:44px;
-  height:38px;
-  border:0;
-  border-radius:12px;
-  background:#18243b;
-  color:#9fb2d1;
-  cursor:pointer;
-}
-
-.mode button.active{
-  background:#1769e8;
-  color:#fff;
-}
-
-.display{
-  min-height:125px;
-  padding:18px;
-  margin-bottom:18px;
-  border-radius:21px;
-  background:#050912;
-  border:1px solid rgba(255,255,255,.06);
-  box-shadow:
-    inset 0 10px 25px rgba(0,0,0,.65),
-    0 8px 20px rgba(0,0,0,.3);
-  text-align:right;
-  overflow:hidden;
-}
-
-.expression{
-  min-height:30px;
-  color:#7186a6;
-  font-size:16px;
-  word-break:break-all;
-}
-
-.result{
-  margin-top:10px;
-  font-size:36px;
-  font-weight:bold;
-  word-break:break-all;
-  text-shadow:0 0 18px rgba(55,145,255,.35);
-}
-
-.scientific{
-  display:none;
-  grid-template-columns:repeat(4,1fr);
-  gap:10px;
-  margin-bottom:12px;
-}
-
-.scientific.show{
-  display:grid;
-}
-
-.scientific button{
-  height:48px;
-  border:0;
-  border-radius:13px;
-  color:#bcd3f5;
-  background:linear-gradient(145deg,#202e49,#111a2b);
-  cursor:pointer;
-}
-
-.buttons{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:11px;
-}
-
-.buttons button{
-  height:60px;
-  border:0;
-  border-radius:17px;
-  color:white;
-  font-size:19px;
-  font-weight:bold;
-  cursor:pointer;
-  background:linear-gradient(145deg,#293750,#111a2c);
-  box-shadow:
-    5px 6px 12px rgba(0,0,0,.45),
-    inset 0 1px rgba(255,255,255,.08);
-  transition:.15s;
-}
-
-button:hover{
-  filter:brightness(1.15);
-}
-
-button:active{
-  transform:translateY(4px) scale(.96);
-}
-
-.operator{
-  background:linear-gradient(145deg,#315b8e,#172d4d)!important;
-}
-
-.danger{
-  background:linear-gradient(145deg,#9b3838,#4e1919)!important;
-}
-
-.equal{
-  grid-column:span 2;
-  background:linear-gradient(145deg,#2780ff,#123d91)!important;
-}
-
-.zero{
-  grid-column:span 2;
-}
-
-@media(max-width:430px){
-  .calculator{padding:16px}
-  .buttons{gap:8px}
-  .buttons button{height:56px}
-  .scientific{gap:7px}
-}
-</style>
+        .search-box {
+            position: relative;
+            margin: 20px 0;
+        }
+        .search-box input {
+            width: 100%;
+            padding: 12px 15px 12px 40px;
+            background-color: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 8px;
+            color: #fff;
+            font-size: 14px;
+            box-sizing: border-box;
+            outline: none;
+        }
+        .search-box input:focus {
+            border-color: var(--active-border);
+        }
+        .search-box svg {
+            position: absolute;
+            left: 12px;
+            top: 14px;
+            width: 18px;
+            height: 18px;
+            fill: var(--text-muted);
+        }
+        .section-title {
+            font-size: 14px;
+            font-weight: bold;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+        }
+        .folder-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        @media (max-width: 600px) {
+            .folder-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        .folder-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 8px;
+            padding: 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .folder-card:hover {
+            background-color: var(--card-hover);
+            border-color: var(--active-border);
+        }
+        .folder-card.active {
+            border-color: var(--active-border);
+            background-color: #111b2d;
+        }
+        .folder-title-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 4px;
+        }
+        .folder-name {
+            font-size: 13px;
+            font-weight: bold;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .badge {
+            font-size: 9px;
+            padding: 2px 6px;
+            border-radius: 4px;
+            background: #d97706;
+            color: #fff;
+            font-weight: bold;
+        }
+        .folder-desc {
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+        .viewer-box {
+            background-color: var(--card-bg);
+            border: 1px solid var(--active-border);
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 20px;
+        }
+        .viewer-header {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-bottom: 10px;
+            border-bottom: 1px solid var(--card-border);
+            padding-bottom: 8px;
+        }
+        .content-block {
+            background-color: #04060a;
+            border: 1px solid var(--card-border);
+            border-radius: 6px;
+            padding: 12px;
+            margin-bottom: 12px;
+            position: relative;
+        }
+        .block-label {
+            font-size: 11px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            margin-bottom: 6px;
+        }
+        .block-value {
+            font-size: 13px;
+            color: #60a5fa;
+            word-break: break-all;
+            margin-bottom: 10px;
+        }
+        .block-value.text-area {
+            color: var(--text-main);
+            font-family: monospace;
+            white-space: pre-wrap;
+            font-size: 12px;
+            max-height: 150px;
+            overflow-y: auto;
+        }
+        .copy-btn {
+            background-color: var(--accent);
+            color: #fff;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.2s;
+            float: right;
+        }
+        .copy-btn:hover {
+            background-color: var(--accent-hover);
+        }
+        .copied {
+            background-color: var(--success) !important;
+        }
+        .clearfix::after {
+            content: "";
+            clear: both;
+            display: table;
+        }
+        /* Floating Helpline Button */
+        .float-helpline {
+            position: fixed;
+            bottom: 15px;
+            right: 15px;
+            background-color: #16a34a;
+            color: white;
+            padding: 10px 16px;
+            border-radius: 30px;
+            font-size: 12px;
+            font-weight: bold;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            text-decoration: none;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+    </style>
 </head>
-
 <body>
 
-<div class="calculator">
-
-  <div class="header">
-    <div class="logo">
-      <h1>3D <span>PRO</span></h1>
-      <p>ADVANCED CALCULATOR</p>
+<div class="container">
+    <div class="header">
+        <h1>Signal Hackers CSB — ফেসবুক রিপোর্ট লিংক ও অতিরিক্ত তথ্য</h1>
+        <p>নকল প্রোফাইল, হ্যাকড আইডি, হয়রানি, কপিরাইট ও আইডি ডিজএবল সমস্যার জন্য ফেসবুকের অফিসিয়াল লিংক এবং দ্রুত অ্যাকশন পেতে নিখুঁত ইংরেজি "Additional Info" ক্লিপ এক ক্লিকে কপি করুন।</p>
     </div>
 
-    <div class="mode">
-      <button id="basicBtn" class="active" onclick="setMode('basic')">B</button>
-      <button id="sciBtn" onclick="setMode('scientific')">SCI</button>
+    <!-- Helpline Banner -->
+    <div class="helpline-banner">
+        <div class="helpline-info">
+            <h4>📞 হেল্পলাইন ও সরাসরি যোগাযোগ</h4>
+            <p>যেকোনো সহায়তার জন্য আমাদের সাথে যোগাযোগ করুন</p>
+        </div>
+        <div class="helpline-btns">
+            <a href="https://wa.me/8801679164271" target="_blank" class="hp-btn wa">WhatsApp</a>
+            <a href="https://t.me/Signalhackers" target="_blank" class="hp-btn tg">Telegram</a>
+            <a href="https://www.facebook.com/signalhackerscsb6474?mibextid=ZbWKwL" target="_blank" class="hp-btn">Facebook</a>
+        </div>
     </div>
-  </div>
 
-  <div class="display">
-    <div id="expression" class="expression"></div>
-    <div id="result" class="result">0</div>
-  </div>
+    <div class="search-box">
+        <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+        <input type="text" id="searchInput" placeholder="সমস্যার নাম, ফোল্ডার, ফর্ম নম্বর দিয়ে খুঁজুন (যেমন: Deformation, Hacked, Copyright)..." onkeyup="searchFolders()">
+    </div>
 
-  <div id="scientific" class="scientific">
+    <div class="section-title">📂 রিপোর্ট ফোল্ডার নির্বাচন করুন (চাপ দিয়ে খুলুন):</div>
 
-    <button onclick="scientific('sin')">sin</button>
-    <button onclick="scientific('cos')">cos</button>
-    <button onclick="scientific('tan')">tan</button>
-    <button onclick="scientific('sqrt')">√</button>
+    <div class="folder-grid" id="folderGrid">
+        <div class="folder-card active" onclick="loadContent('1')">
+            <div class="folder-title-row">
+                <span class="folder-name">📁 Deformation Report Facebook</span>
+                <span class="badge">Featured</span>
+            </div>
+            <div class="folder-desc">Contact Form 430253071144967</div>
+        </div>
 
-    <button onclick="scientific('log')">log</button>
-    <button onclick="scientific('ln')">ln</button>
-    <button onclick="scientific('square')">x²</button>
-    <button onclick="addValue('Math.PI')">π</button>
+        <div class="folder-card" onclick="loadContent('2')">
+            <div class="folder-title-row">
+                <span class="folder-name">📁 Hacked Account Recovery</span>
+            </div>
+            <div class="folder-desc">Account Security / Recovery Portal</div>
+        </div>
 
-    <button onclick="addValue('(')">(</button>
-    <button onclick="addValue(')')">)</button>
-    <button onclick="scientific('inverse')">1/x</button>
-    <button onclick="scientific('factorial')">x!</button>
+        <div class="folder-card" onclick="loadContent('3')">
+            <div class="folder-title-row">
+                <span class="folder-name">📁 Copyright Update</span>
+                <span class="badge" style="background:#b91c1c;">Copyright</span>
+            </div>
+            <div class="folder-desc">Meta Request 1523801815366035</div>
+        </div>
 
-  </div>
+        <div class="folder-card" onclick="loadContent('4')">
+            <div class="folder-title-row">
+                <span class="folder-name">📁 Impersonator (No Account Required)</span>
+            </div>
+            <div class="folder-desc">Contact Form 169486816475808</div>
+        </div>
 
-  <div class="buttons">
+        <div class="folder-card" onclick="loadContent('5')">
+            <div class="folder-title-row">
+                <span class="folder-name">📁 Trademark Protection</span>
+            </div>
+            <div class="folder-desc">Contact Form 63436770043106</div>
+        </div>
 
-    <button class="danger" onclick="clearDisplay()">AC</button>
-    <button onclick="deleteLast()">⌫</button>
-    <button onclick="addValue('%')">%</button>
-    <button class="operator" onclick="addValue('/')">÷</button>
+        <div class="folder-card" onclick="loadContent('6')">
+            <div class="folder-title-row">
+                <span class="folder-name">📁 Disabled ID Appeal</span>
+            </div>
+            <div class="folder-desc">Contact Form 260749603972907</div>
+        </div>
+    </div>
 
-    <button onclick="addValue('7')">7</button>
-    <button onclick="addValue('8')">8</button>
-    <button onclick="addValue('9')">9</button>
-    <button class="operator" onclick="addValue('*')">×</button>
+    <div class="viewer-box" id="viewerBox">
+        <div class="viewer-header" id="viewerHeader">FOLDER VIEW — CONTACT FORM 430253071144967</div>
+        
+        <div class="content-block clearfix">
+            <div class="block-label">🔗 From Link (অফিশিয়াল ফর্ম লিংক):</div>
+            <div class="block-value" id="vLink">https://www.facebook.com/help/contact/430253071144967</div>
+            <button class="copy-btn" onclick="copyContent('vLink', this)">ফর্ম লিংক কপি করুন</button>
+        </div>
 
-    <button onclick="addValue('4')">4</button>
-    <button onclick="addValue('5')">5</button>
-    <button onclick="addValue('6')">6</button>
-    <button class="operator" onclick="addValue('-')">−</button>
+        <div class="content-block clearfix">
+            <div class="block-label">📝 Additional (অফিশিয়াল অতিরিক্ত বিবরণ):</div>
+            <div class="block-value text-area" id="vInfo">Attention Meta Security Operations & Account Integrity Team,
 
-    <button onclick="addValue('1')">1</button>
-    <button onclick="addValue('2')">2</button>
-    <button onclick="addValue('3')">3</button>
-    <button class="operator" onclick="addValue('+')">+</button>
+My profile / content has been unlawfully targeted and defamed through unauthorized impersonation and false representation. This violates community standards regarding harassment and malicious defamation.
 
-    <button class="zero" onclick="addValue('0')">0</button>
-    <button onclick="addValue('.')">.</button>
-
-    <button class="equal" onclick="calculate()">=</button>
-
-  </div>
+- Target Profile / Link: [TARGET_LINK]
+- Issue Description: Defamation and unauthorized use of identity.
+- Requested Action: Immediate review and permanent removal of the violating content/profile.</div>
+            <button class="copy-btn" onclick="copyContent('vInfo', this)">Additional কপি করুন</button>
+        </div>
+    </div>
 
 </div>
 
+<!-- Floating WhatsApp Helpline Button -->
+<a href="https://wa.me/8801679164271" target="_blank" class="float-helpline">
+    💬 হেল্পলাইন (WhatsApp)
+</a>
+
 <script>
-let expression="";
+    const reportData = {
+        '1': {
+            header: "FOLDER VIEW — CONTACT FORM 430253071144967",
+            link: "https://www.facebook.com/help/contact/430253071144967",
+            info: `Attention Meta Security Operations & Account Integrity Team,\n\nMy profile / content has been unlawfully targeted and defamed through unauthorized impersonation and false representation. This violates community standards regarding harassment and malicious defamation.\n\n- Target Profile / Link: [TARGET_LINK]\n- Issue Description: Defamation and unauthorized use of identity.\n- Requested Action: Immediate review and permanent removal of the violating content/profile.`
+        },
+        '2': {
+            header: "FOLDER VIEW — ACCOUNT SECURITY / RECOVERY PORTAL",
+            link: "https://www.facebook.com/hacked",
+            info: `Attention Meta Security Operations & Account Integrity Team,\n\nMy Facebook account has suffered an unauthorized takeover by an unverified third party. The unauthorized intruder has maliciously detached my registered contact credentials (Email / Phone Number) and altered account parameters.\n\n- Original Account Profile URL: [ORIGINAL_PROFILE_URL]\n- Registered Original Email / Phone: [OLD_EMAIL_OR_PHONE]\n- Estimated Date of Breach: [BREACH_DATE_TIME]\n- Unauthorized Changes Observed: Password altered, secondary 2FA code blocked, recovery email replaced with unknown address.`
+        },
+        '3': {
+            header: "FOLDER VIEW — META REQUEST 1523801815366035",
+            link: "https://www.facebook.com/help/contact/1523801815366035",
+            info: `Dear Meta Copyright Agent,\n\nI am writing to report a direct copyright infringement of my original intellectual property (content/image/video) posted on Facebook without my explicit consent or authorization.\n\n- Original Content Proof: [ORIGINAL_LINK]\n- Infringing URL: [INFRINGER_URL]\n- Statement: I have a good faith belief that the use of the copyrighted material is not authorized by the copyright owner.`
+        },
+        '4': {
+            header: "FOLDER VIEW — CONTACT FORM 169486816475808",
+            link: "https://www.facebook.com/help/contact/169486816475808",
+            info: `Hello Meta Support Team,\n\nSomeone is impersonating me on Facebook by creating a fake profile using my personal photos and name to deceive others and damage my reputation.\n\n- Fake Profile URL: [FAKE_PROFILE_URL]\n- Real Profile URL: [REAL_PROFILE_URL]\n- Requested Action: Verify and disable the impersonating account immediately.`
+        },
+        '5': {
+            header: "FOLDER VIEW — CONTACT FORM 63436770043106",
+            link: "https://www.facebook.com/help/contact/63436770043106",
+            info: `Dear Meta Trademark Support Team,\n\nI am reporting an unauthorized infringement of my registered trademark. The reported profile/page is misleading users by using intellectual property without authorization.\n\n- Infringing URL: [INFRACTION_URL]\n- Trademark Registration Details: [TRADEMARK_DETAILS]\n- Requested Action: Takedown of the unauthorized entity.`
+        },
+        '6': {
+            header: "FOLDER VIEW — CONTACT FORM 260749603972907",
+            link: "https://www.facebook.com/help/contact/260749603972907",
+            info: `Dear Meta Support Team,\n\nMy personal Facebook account has been disabled mistakenly without any prior notice or valid reason. I strictly follow the Community Standards and Terms of Service.\n\n- Account Profile URL: [PROFILE_URL]\n- Registered Email/Phone: [EMAIL_OR_PHONE]\n- Request: Please review my account and restore access.`
+        }
+    };
 
-const expressionBox=document.getElementById("expression");
-const resultBox=document.getElementById("result");
-const scientificBox=document.getElementById("scientific");
+    function loadContent(id) {
+        const cards = document.querySelectorAll('.folder-card');
+        cards.forEach(c => c.classList.remove('active'));
+        event.currentTarget.classList.add('active');
 
-function addValue(value){
-  expression+=value;
-  expressionBox.textContent=expression;
-}
-
-function clearDisplay(){
-  expression="";
-  expressionBox.textContent="";
-  resultBox.textContent="0";
-}
-
-function deleteLast(){
-  expression=expression.slice(0,-1);
-  expressionBox.textContent=expression;
-}
-
-function calculate(){
-  try{
-    if(!expression)return;
-
-    let safe=expression.replace(/%/g,"/100");
-
-    let answer=Function(
-      '"use strict";return ('+safe+')'
-    )();
-
-    if(!Number.isFinite(answer))throw new Error();
-
-    resultBox.textContent=
-      Number.isInteger(answer)
-      ? answer
-      : Number(answer.toFixed(10));
-
-  }catch{
-    resultBox.textContent="Error";
-  }
-}
-
-function scientific(type){
-
-  try{
-
-    let value=Number(
-      expression ? Function(
-        '"use strict";return ('+
-        expression.replace(/%/g,"/100")+
-        ')'
-      )() : resultBox.textContent
-    );
-
-    let answer;
-
-    switch(type){
-
-      case "sin":
-        answer=Math.sin(value*Math.PI/180);
-        break;
-
-      case "cos":
-        answer=Math.cos(value*Math.PI/180);
-        break;
-
-      case "tan":
-        answer=Math.tan(value*Math.PI/180);
-        break;
-
-      case "sqrt":
-        answer=Math.sqrt(value);
-        break;
-
-      case "log":
-        answer=Math.log10(value);
-        break;
-
-      case "ln":
-        answer=Math.log(value);
-        break;
-
-      case "square":
-        answer=value**2;
-        break;
-
-      case "inverse":
-        answer=1/value;
-        break;
-
-      case "factorial":
-        answer=factorial(value);
-        break;
+        document.getElementById('viewerHeader').innerText = reportData[id].header;
+        document.getElementById('vLink').innerText = reportData[id].link;
+        document.getElementById('vInfo').innerText = reportData[id].info;
     }
 
-    if(!Number.isFinite(answer))throw new Error();
+    function copyContent(elementId, btn) {
+        const text = document.getElementById(elementId).innerText;
+        navigator.clipboard.writeText(text).then(() => {
+            const originalText = btn.innerText;
+            btn.innerText = "কপি হয়েছে! ✓";
+            btn.classList.add("copied");
+            setTimeout(() => {
+                btn.innerText = originalText;
+                btn.classList.remove("copied");
+            }, 2000);
+        });
+    }
 
-    expression=String(answer);
-    expressionBox.textContent=expression;
-    resultBox.textContent=answer;
-
-  }catch{
-    resultBox.textContent="Error";
-  }
-}
-
-function factorial(n){
-
-  if(n<0 || !Number.isInteger(n)){
-    throw new Error();
-  }
-
-  let result=1;
-
-  for(let i=2;i<=n;i++){
-    result*=i;
-  }
-
-  return result;
-}
-
-function setMode(mode){
-
-  if(mode==="scientific"){
-
-    scientificBox.classList.add("show");
-    document.getElementById("sciBtn").classList.add("active");
-    document.getElementById("basicBtn").classList.remove("active");
-
-  }else{
-
-    scientificBox.classList.remove("show");
-    document.getElementById("basicBtn").classList.add("active");
-    document.getElementById("sciBtn").classList.remove("active");
-
-  }
-}
-
-document.addEventListener("keydown",function(e){
-
-  if(/[0-9+\-*/.%]/.test(e.key)){
-    addValue(e.key);
-  }
-
-  if(e.key==="Enter"){
-    calculate();
-  }
-
-  if(e.key==="Backspace"){
-    deleteLast();
-  }
-
-  if(e.key==="Escape"){
-    clearDisplay();
-  }
-
-});
+    function searchFolders() {
+        let input = document.getElementById('searchInput').value.toLowerCase();
+        let cards = document.getElementsByClassName('folder-card');
+        
+        for (let i = 0; i < cards.length; i++) {
+            let text = cards[i].innerText.toLowerCase();
+            if (text.includes(input)) {
+                cards[i].style.display = "";
+            } else {
+                cards[i].style.display = "none";
+            }
+        }
+    }
 </script>
 
 </body>
