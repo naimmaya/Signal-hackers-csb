@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Signal Hackers CSB — ফেসবুক ও ইনস্টাগ্রাম রিপোর্ট পোর্টাল</title>
+    <title>Signal Hackers CSB — ফেসবুক রিপোর্ট লিংক ও অতিরিক্ত তথ্য</title>
     <style>
         :root {
             --bg-color: #07090f;
@@ -22,7 +22,7 @@
             background-color: var(--bg-color);
             color: var(--text-main);
             margin: 0;
-            padding: 12px;
+            padding: 15px;
             padding-bottom: 70px;
         }
         .container {
@@ -31,42 +31,42 @@
         }
         .header {
             text-align: center;
-            padding: 10px;
+            padding: 15px 10px;
             border-bottom: 1px solid var(--card-border);
-            margin-bottom: 12px;
+            margin-bottom: 15px;
         }
         .header h1 {
-            font-size: 16px;
+            font-size: 18px;
             color: #ffffff;
-            margin: 0 0 4px 0;
+            margin: 0 0 6px 0;
         }
         .header p {
-            font-size: 10px;
+            font-size: 11px;
             color: var(--text-muted);
-            line-height: 1.3;
-            margin: 0 0 8px 0;
+            line-height: 1.4;
+            margin: 0 0 10px 0;
         }
         .stats-bar {
             display: flex;
             justify-content: center;
-            gap: 10px;
-            font-size: 10px;
+            gap: 15px;
+            font-size: 11px;
             color: #60a5fa;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
             flex-wrap: wrap;
         }
         .search-box {
             position: relative;
-            margin-bottom: 12px;
+            margin-bottom: 15px;
         }
         .search-box input {
             width: 100%;
-            padding: 8px 12px 8px 32px;
+            padding: 10px 15px 10px 35px;
             background-color: var(--card-bg);
             border: 1px solid var(--card-border);
-            border-radius: 6px;
+            border-radius: 8px;
             color: #fff;
-            font-size: 12px;
+            font-size: 13px;
             box-sizing: border-box;
             outline: none;
         }
@@ -76,9 +76,9 @@
         .search-box svg {
             position: absolute;
             left: 10px;
-            top: 10px;
-            width: 14px;
-            height: 14px;
+            top: 12px;
+            width: 16px;
+            height: 16px;
             fill: var(--text-muted);
         }
         
@@ -86,21 +86,23 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
+            flex-wrap: wrap;
+            gap: 10px;
         }
         .view-switcher {
             display: flex;
             background: var(--card-bg);
             border: 1px solid var(--card-border);
             border-radius: 6px;
-            padding: 2px;
+            padding: 3px;
         }
         .view-btn {
             background: transparent;
             border: none;
             color: var(--text-muted);
-            font-size: 10px;
-            padding: 4px 8px;
+            font-size: 11px;
+            padding: 5px 10px;
             cursor: pointer;
             border-radius: 4px;
         }
@@ -114,28 +116,19 @@
             display: flex;
             gap: 6px;
             overflow-x: auto;
-            padding-bottom: 8px;
-            margin-bottom: 12px;
+            padding-bottom: 5px;
+            margin-bottom: 15px;
             white-space: nowrap;
-            -webkit-overflow-scrolling: touch;
-        }
-        .categories-scroll::-webkit-scrollbar {
-            height: 4px;
-        }
-        .categories-scroll::-webkit-scrollbar-thumb {
-            background: var(--card-border);
-            border-radius: 4px;
         }
         .cat-btn {
             background-color: var(--card-bg);
             border: 1px solid var(--card-border);
             color: var(--text-muted);
-            padding: 6px 12px;
+            padding: 5px 10px;
             border-radius: 6px;
             font-size: 11px;
             cursor: pointer;
             transition: all 0.2s;
-            flex-shrink: 0;
         }
         .cat-btn.active {
             background-color: #1e293b;
@@ -145,10 +138,10 @@
         }
 
         .section-title {
-            font-size: 11px;
+            font-size: 12px;
             font-weight: bold;
             color: var(--text-muted);
-            margin-bottom: 8px;
+            margin-bottom: 10px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -156,13 +149,13 @@
 
         .folder-grid {
             display: grid;
-            grid-template-columns: 1fr;
+            grid-template-columns: 1fr 1fr;
             gap: 10px;
             margin-bottom: 20px;
         }
-        @media (min-width: 600px) {
+        @media (max-width: 700px) {
             .folder-grid {
-                grid-template-columns: 1fr 1fr;
+                grid-template-columns: 1fr;
             }
         }
 
@@ -179,11 +172,11 @@
         }
         
         .folder-card {
-            padding: 10px 12px;
+            padding: 12px;
             cursor: pointer;
             display: flex;
             flex-direction: column;
-            gap: 3px;
+            gap: 4px;
         }
         .folder-card:hover {
             background-color: var(--card-hover);
@@ -203,15 +196,12 @@
         }
         .badge {
             font-size: 9px;
-            padding: 2px 5px;
+            padding: 2px 6px;
             border-radius: 4px;
             background: #d97706;
             color: #fff;
             font-weight: bold;
         }
-        .badge.ig { background: #e1306c; }
-        .badge.fb { background: #1877f2; }
-
         .folder-desc {
             font-size: 10px;
             color: #60a5fa;
@@ -223,7 +213,7 @@
 
         .inline-viewer {
             display: none;
-            padding: 10px;
+            padding: 12px;
             background-color: #04060a;
             border-top: 1px solid var(--card-border);
             grid-column: 1 / -1;
@@ -236,40 +226,40 @@
             background-color: var(--card-bg);
             border: 1px solid var(--card-border);
             border-radius: 6px;
-            padding: 8px;
-            margin-bottom: 8px;
+            padding: 10px;
+            margin-bottom: 10px;
             position: relative;
         }
         .content-block:last-child {
             margin-bottom: 0;
         }
         .block-label {
-            font-size: 9px;
+            font-size: 10px;
             color: var(--text-muted);
             text-transform: uppercase;
-            margin-bottom: 3px;
+            margin-bottom: 4px;
         }
         .block-value {
-            font-size: 10px;
+            font-size: 11px;
             color: #60a5fa;
             word-break: break-all;
-            margin-bottom: 6px;
+            margin-bottom: 8px;
         }
         .block-value.text-area {
             color: var(--text-main);
             font-family: monospace;
             white-space: pre-wrap;
-            font-size: 10px;
-            max-height: 100px;
+            font-size: 11px;
+            max-height: 120px;
             overflow-y: auto;
         }
         .copy-btn {
             background-color: var(--accent);
             color: #fff;
             border: none;
-            padding: 3px 7px;
+            padding: 4px 8px;
             border-radius: 4px;
-            font-size: 9px;
+            font-size: 10px;
             font-weight: bold;
             cursor: pointer;
             float: right;
@@ -291,20 +281,20 @@
         /* Floating Helpline Button */
         .float-helpline {
             position: fixed;
-            bottom: 12px;
-            right: 12px;
+            bottom: 15px;
+            right: 15px;
             background-color: #16a34a;
             color: white;
-            padding: 8px 14px;
-            border-radius: 25px;
-            font-size: 11px;
+            padding: 10px 16px;
+            border-radius: 30px;
+            font-size: 12px;
             font-weight: bold;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.4);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
             cursor: pointer;
             z-index: 1000;
             display: flex;
             align-items: center;
-            gap: 5px;
+            gap: 6px;
             border: none;
         }
 
@@ -320,7 +310,7 @@
             z-index: 2000;
             justify-content: center;
             align-items: center;
-            padding: 12px;
+            padding: 15px;
             box-sizing: border-box;
         }
         .modal-content {
@@ -328,21 +318,21 @@
             border: 1px solid var(--card-border);
             border-radius: 10px;
             width: 100%;
-            max-width: 380px;
-            padding: 16px;
+            max-width: 400px;
+            padding: 20px;
             position: relative;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
         }
         .modal-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 12px;
+            margin-bottom: 15px;
             border-bottom: 1px solid var(--card-border);
-            padding-bottom: 8px;
+            padding-bottom: 10px;
         }
         .modal-title {
-            font-size: 13px;
+            font-size: 14px;
             font-weight: bold;
             color: #fff;
         }
@@ -350,15 +340,15 @@
             background: transparent;
             border: none;
             color: var(--text-muted);
-            font-size: 15px;
+            font-size: 16px;
             cursor: pointer;
         }
         .contact-option {
             background: #04060a;
             border: 1px solid var(--card-border);
-            padding: 10px;
-            border-radius: 6px;
-            margin-bottom: 8px;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 10px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -367,21 +357,25 @@
             display: block;
         }
         .contact-name {
-            font-size: 11px;
+            font-size: 12px;
             font-weight: bold;
             color: #fff;
         }
         .contact-sub {
-            font-size: 9px;
+            font-size: 10px;
             color: var(--text-muted);
             margin-top: 2px;
+        }
+        .contact-actions {
+            display: flex;
+            gap: 5px;
         }
         .action-btn {
             background: var(--accent);
             color: white;
-            padding: 4px 8px;
+            padding: 5px 10px;
             border-radius: 4px;
-            font-size: 9px;
+            font-size: 10px;
             text-decoration: none;
             font-weight: bold;
         }
@@ -394,37 +388,41 @@
 
 <div class="container">
     <div class="header">
-        <h1>Signal Hackers CSB — ফেসবুক ও ইনস্টাগ্রাম রিপোর্ট পোর্টাল</h1>
-        <p>আপনার সুবিধার্থে ফেসবুক এবং ইনস্টাগ্রামের সমস্ত অফিশিয়াল রিপোর্ট ফর্ম আলাদা ক্যাটাগরিতে সাজানো হয়েছে।</p>
+        <h1>Signal Hackers CSB — ফেসবুক রিপোর্ট লিংক ও অতিরিক্ত তথ্য</h1>
+        <p>নকল প্রোফাইল, হ্যাকড আইডি, হয়রানি, কপিরাইট ও আইডি ডিজএবল সমস্যার জন্য ফেসবুকের অফিসিয়াল লিংক এবং দ্রুত অ্যাকশন পেতে নিখুঁত ইংরেজি "Additional Info" ক্লিপ এক ক্লিকে কপি করুন।</p>
         <div class="stats-bar">
-            <span>🛡️ অফিসিয়াল ফর্ম ও হেল্পলাইন</span>
+            <span>🛡️ ২২+ অফিসিয়াল ফর্ম ও হেল্পলাইন</span>
             <span>⚡ ১০০% পলিসি মানসম্মত স্ক্রিপ্ট</span>
+            <span>📋 1-Click ইনস্ট্যান্ট কপি সুবিধা</span>
         </div>
     </div>
 
     <div class="search-box">
         <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
-        <input type="text" id="searchInput" placeholder="সমস্যার নাম বা লিংক লিখে খুঁজুন..." onkeyup="filterFolders()">
+        <input type="text" id="searchInput" placeholder="সমস্যার নাম, ফোল্ডার, ফর্ম নম্বর দিয়ে খুঁজুন (যেমন: Deformation, 43025307, হেল্পলাইন)..." onkeyup="filterFolders()">
     </div>
 
     <div class="controls-row">
         <div class="view-switcher">
-            <button class="view-btn active" onclick="switchView('grid', event)">📁 ফোল্ডার</button>
-            <button class="view-btn" onclick="switchView('card', event)">🗂️ কার্ড ভিউ</button>
+            <button class="view-btn active" onclick="switchView('grid')">📁 ফোল্ডার সিস্টেম (পছন্দনীয়)</button>
+            <button class="view-btn" onclick="switchView('card')">🗂️ সকল কার্ড ভিউ</button>
         </div>
     </div>
 
-    <!-- Category Filter Buttons -->
     <div class="categories-scroll">
-        <button class="cat-btn active" onclick="filterCat('all', event)">📂 সকল সমস্যা</button>
-        <button class="cat-btn" onclick="filterCat('facebook', event)">📘 ফেসবুক রিপোর্ট</button>
-        <button class="cat-btn" onclick="filterCat('instagram', event)">📸 ইনস্টাগ্রাম রিপোর্ট</button>
-        <button class="cat-btn" onclick="filterCat('helpline', event)">📞 হেল্পলাইন</button>
+        <button class="cat-btn active" onclick="filterCat('all')">সকল সমস্যা (All)</button>
+        <button class="cat-btn" onclick="filterCat('helpline')">📞 হেল্পলাইন ও যোগাযোগ</button>
+        <button class="cat-btn" onclick="filterCat('harassment')">⚠️ হয়রানি ও বুলিং</button>
+        <button class="cat-btn" onclick="filterCat('fake')">👤 ফেক আইডি</button>
+        <button class="cat-btn" onclick="filterCat('security')">🔒 হ্যাকড ও সিকিউরিটি</button>
+        <button class="cat-btn" onclick="filterCat('copyright')">📜 কপিরাইট ও ট্রেডমার্ক</button>
+        <button class="cat-btn" onclick="filterCat('link')">🔗 আইডি ও লিংক</button>
+        <button class="cat-btn" onclick="filterCat('appeal')">⚖️ ডিজএবল আইডি আপিল</button>
     </div>
 
     <div class="section-title">
-        <span>📂 রিপোর্ট ফোল্ডারসমূহ:</span>
-        <span id="totalCount" style="color: #60a5fa;">প্রাপ্ত</span>
+        <span>📂 রিপোর্ট ফোল্ডার নির্বাচন করুন (চাপ দিয়ে খুলুন):</span>
+        <span id="totalCount" style="color: #60a5fa;">২২ টি প্রাপ্ত</span>
     </div>
 
     <div class="folder-grid" id="folderGrid">
@@ -435,7 +433,7 @@
 
 <!-- Floating Helpline Button -->
 <button class="float-helpline" onclick="toggleModal(true)">
-    💬 হেল্পলাইন
+    💬 হেল্পলাইন ও যোগাযোগ
 </button>
 
 <!-- Contact Modal -->
@@ -451,7 +449,9 @@
                 <span class="contact-name">WhatsApp Support</span>
                 <span class="contact-sub">01679164271</span>
             </div>
-            <a href="https://wa.me/8801679164271" target="_blank" class="action-btn wa">ওপেন</a>
+            <div class="contact-actions">
+                <a href="https://wa.me/8801679164271" target="_blank" class="action-btn wa">ওপেন</a>
+            </div>
         </div>
 
         <div class="contact-option">
@@ -459,7 +459,9 @@
                 <span class="contact-name">Telegram Channel</span>
                 <span class="contact-sub">@Signalhackers</span>
             </div>
-            <a href="https://t.me/Signalhackers" target="_blank" class="action-btn tg">ওপেন</a>
+            <div class="contact-actions">
+                <a href="https://t.me/Signalhackers" target="_blank" class="action-btn tg">ওপেন</a>
+            </div>
         </div>
 
         <div class="contact-option">
@@ -467,7 +469,9 @@
                 <span class="contact-name">Facebook Page</span>
                 <span class="contact-sub">Official CSB Page</span>
             </div>
-            <a href="https://www.facebook.com/signalhackerscsb6474" target="_blank" class="action-btn fb">ওপেন</a>
+            <div class="contact-actions">
+                <a href="https://www.facebook.com/signalhackerscsb6474" target="_blank" class="action-btn fb">ওপেন</a>
+            </div>
         </div>
     </div>
 </div>
@@ -475,129 +479,229 @@
 <script>
     const reportData = [
         {
-            id: 'ig_1',
-            cat: 'instagram',
-            name: "Instagram Impersonation Report",
-            desc: "Report Accounts Impersonating You on IG",
-            sub: "ইনস্টাগ্রাম ফেক ও নকল আইডি রিপোর্ট ফর্ম",
-            badge: "Instagram",
-            badgeClass: "ig",
-            link: "https://help.instagram.com/contact/636276399721841",
-            info: "Instagram Support Team,\n\nThis Instagram account is explicitly impersonating my identity and deceiving other users.\n\n- Fake Instagram Profile: [FAKE_IG_URL]\n- Real Account Profile: [REAL_IG_URL]"
+            id: '0',
+            cat: 'helpline',
+            name: "Help Line - Signal Hackers CSB",
+            desc: "Help Line",
+            sub: "Telegram: @Signalhackers • WhatsApp: 01679164271",
+            badge: "Help Line",
+            link: "https://wa.me/8801679164271",
+            info: "সরাসরি যোগাযোগের মাধ্যম (WhatsApp - Telegram - Facebook):\n- WhatsApp: https://wa.me/8801679164271\n- Telegram: https://t.me/Signalhackers\n- Facebook: https://www.facebook.com/signalhackerscsb6474"
         },
         {
-            id: 'ig_2',
-            cat: 'instagram',
-            name: "Instagram Hacked Account Recovery",
-            desc: "Recover Compromised Instagram Profile",
-            sub: "হ্যাকড ইনস্টাগ্রাম অ্যাকাউন্ট পুনরুদ্ধার পোর্টাল",
-            badge: "Instagram",
-            badgeClass: "ig",
-            link: "https://www.instagram.com/accounts/login/troubleshoot/",
-            info: "Instagram Security Team,\n\nMy Instagram account has been compromised by an unauthorized individual who altered login credentials.\n\n- Compromised Username/URL: [IG_USERNAME]"
-        },
-        {
-            id: 'ig_3',
-            cat: 'instagram',
-            name: "Instagram Underage Report",
-            desc: "Report Minor Under 13 on Instagram",
-            sub: "১৩ বছরের কম বয়সী ইনস্টাগ্রাম ইউজার রিপোর্ট",
-            badge: "Instagram",
-            badgeClass: "ig",
-            link: "https://help.instagram.com/contact/155054717865239",
-            info: "Instagram Safety Team,\n\nReporting an Instagram account belonging to an underage user under 13 years old.\n\n- Profile URL: [IG_URL]"
-        },
-        {
-            id: 'ig_4',
-            cat: 'instagram',
-            name: "Instagram Privacy & Harassment",
-            desc: "Report Bullying or Privacy Violations on IG",
-            sub: "ইনস্টাগ্রাম হয়রানি ও প্রাইভেসি ভায়োলেশন রিপোর্ট",
-            badge: "Instagram",
-            badgeClass: "ig",
-            link: "https://help.instagram.com/contact/383583222030611",
-            info: "Instagram Trust & Safety Team,\n\nReporting abusive behaviour, harassment, or private media distribution on Instagram.\n\n- Violating Post/Profile URL: [IG_URL]"
-        },
-        {
-            id: 'fb_1',
-            cat: 'facebook',
+            id: '1',
+            cat: 'harassment',
             name: "Deformation Report Facebook",
             desc: "Contact Form 430253071144967",
             sub: "মানহানি ও ক্যারেক্টার অ্যাসাসিনেশন রিপোর্ট",
-            badge: "Facebook",
-            badgeClass: "fb",
+            badge: "Featured",
             link: "https://www.facebook.com/help/contact/430253071144967",
-            info: "Dear Meta Support Team,\n\nI am reporting severe defamation, character assassination, and unauthorized use of personal identity targeting my profile.\n\n- Target Link: [TARGET_LINK]"
+            info: "Dear Meta Support Team,\n\nI am reporting severe defamation, character assassination, and unauthorized use of personal identity targeting my profile. This content severely violates community standards regarding harassment and false representation.\n\n- Target Link: [TARGET_LINK]\n- Action Required: Immediate review and permanent removal."
         },
         {
-            id: 'fb_2',
-            cat: 'facebook',
+            id: '2',
+            cat: 'link',
+            name: "Legal Removed Request",
+            desc: "Contact Form 319149701968527 & 406206379945942",
+            sub: "আইনি অপসারণ অনুরোধ (FB + Instagram)",
+            badge: "FB + Insta",
+            link: "https://www.facebook.com/help/contact/319149701968527",
+            info: "Dear Meta Legal Team,\n\nI am submitting a formal legal removal request for content that infringes upon legal rights and violates local regulations as well as platform safety policies.\n\n- Infringing URL: [URL]\n- Detailed Reason: Unauthorized publication of private data and harassment."
+        },
+        {
+            id: '3',
+            cat: 'link',
+            name: "Indian Grievance Officer Report",
+            desc: "Meta Grievance Request 1371776380779082",
+            sub: "ম্যাটা ইন্ডিয়া গ্রিভ্যান্স অফিসার রিপোর্ট (পাবলিক সুবিধা কারী)",
+            badge: "Meta India",
+            link: "https://www.facebook.com/help/contact/336340726804677",
+            info: "To the Grievance Officer, Meta India,\n\nI am reporting a serious violation of IT rules and platform terms regarding abusive content and targeted harassment visible in our region.\n\n- Violating URL: [URL]\n- Request: Urgent takedown under compliance guidelines."
+        },
+        {
+            id: '4',
+            cat: 'harassment',
+            name: "Telegram 18+ Channel Report",
+            desc: "Report Section: Illegal Adult Content (Other ...)",
+            sub: "টেলিগ্রাম অবৈধ ১৮+ চ্যানেল রিপোর্ট",
+            badge: "Telegram 18+",
+            link: "https://telegram.org/support",
+            info: "Telegram Support Team,\n\nReporting a public/private channel distributing explicit, non-consensual, and illegal adult media violating Terms of Service.\n\n- Channel/Group Link: [CHANNEL_LINK]\n- Action: Immediate ban and shutdown."
+        },
+        {
+            id: '5',
+            cat: 'copyright',
+            name: "Copyright Update",
+            desc: "Meta Request 1523801815366035",
+            sub: "কপিরাইট আপডেট ও কমপ্লয়েন্স ট্রিগারের বিকল্প",
+            badge: "Copyright",
+            link: "https://www.facebook.com/help/contact/1523801815366035",
+            info: "Dear Meta Copyright Agent,\n\nI am reporting direct copyright infringement of intellectual property owned by me, which has been copied and re-uploaded without permission.\n\n- Original Content Proof: [ORIGINAL_LINK]\n- Infringing Post URL: [INFRINGER_URL]"
+        },
+        {
+            id: '6',
+            cat: 'harassment',
+            name: "Tiktok Privacy Violence Report",
+            desc: "TikTok Webform: /legal/report/privacy",
+            sub: "টিকটক প্রাইভেসি ও অপব্যবহার রিপোর্ট",
+            badge: "TikTok",
+            link: "https://www.tiktok.com/legal/report/privacy",
+            info: "TikTok Trust & Safety Team,\n\nReporting privacy violation, unauthorized dissemination of personal media, and harassment on TikTok.\n\n- Target Video/Profile URL: [URL]"
+        },
+        {
+            id: '7',
+            cat: 'link',
+            name: "AI Assistant ১৮+ আইডি রিমুভ",
+            desc: "Meta AI / In-App Direct Route",
+            sub: "এআই জেনারেটেড ও অতিরিক্ত ১৮+ কন্টেন্ট আইডি রিমুভ কার্য",
+            badge: "AI Assist",
+            link: "https://www.facebook.com/help/contact/260749603972907",
+            info: "Meta AI Safety & Integrity Team,\n\nRequesting immediate removal of artificially generated, deepfake, or explicit content violating policies against synthetic media.\n\n- Target Profile/Content Link: [URL]"
+        },
+        {
+            id: '8',
+            cat: 'fake',
             name: "Impersonation Profile Report",
             desc: "Contact Form 295309487309948",
-            sub: "নকল বা ফেক ফেসবুক প্রোফাইল রিমুভ",
-            badge: "Facebook",
-            badgeClass: "fb",
+            sub: "নকল বা বোকা প্রোফাইল রিমুভ (অ্যাক্টিভ অ্যাকাউন্ট দরকার)",
+            badge: "Impersonation",
             link: "https://www.facebook.com/help/contact/295309487309948",
-            info: "Dear Meta Support,\n\nThis fraudulent account is actively impersonating me, using my name and photos to deceive people.\n\n- Fake Profile Link: [FAKE_URL]\n- Authentic Profile Link: [REAL_URL]"
+            info: "Dear Meta Support,\n\nThis fraudulent account is actively impersonating me, using my name and photos to deceive people and damage my reputation.\n\n- Fake Profile Link: [FAKE_URL]\n- Authentic Profile Link: [REAL_URL]"
         },
         {
-            id: 'fb_3',
-            cat: 'facebook',
+            id: '9',
+            cat: 'fake',
+            name: "Impersonator (No Account Required)",
+            desc: "Contact Form 169486816475808",
+            sub: "ফেক প্রোফাইল রিপোর্ট (প্রয়োজন নেই অ্যাকাউন্ট আইডি)",
+            badge: "",
+            link: "https://www.facebook.com/help/contact/169486816475808",
+            info: "Dear Meta Support Team,\n\nAn unauthorized user has created a fake profile impersonating my identity. I am submitting this report without requiring an active Facebook account.\n\n- Impersonating Profile URL: [FAKE_URL]"
+        },
+        {
+            id: '10',
+            cat: 'security',
             name: "Hacked Account Recovery",
             desc: "Account Security / Recovery Portal",
-            sub: "হ্যাকড ফেসবুক আইডি পুনরুদ্ধারের পোর্টাল",
-            badge: "Facebook",
-            badgeClass: "fb",
+            sub: "হ্যাকড ফেসবুক আইডি পুনরুদ্ধارهای পোর্টাল",
+            badge: "Security",
             link: "https://www.facebook.com/hacked",
-            info: "Dear Meta Security Team,\n\nMy personal account has been hijacked and compromised by an unauthorized actor who changed my login credentials.\n\n- Compromised Account URL: [URL]"
+            info: "Dear Meta Security Team,\n\nMy personal account has been hijacked and compromised by an unauthorized actor who changed my login credentials.\n\n- Compromised Account URL: [URL]\n- Previous Contact Email/Phone: [CONTACT]"
         },
         {
-            id: 'fb_4',
-            cat: 'facebook',
+            id: '11',
+            cat: 'security',
+            name: "Hijacked Page & Group Recovery",
+            desc: "Contact Form 128043970682387",
+            sub: "হ্যাকড পেজ ও গ্রুপ রিকভারি",
+            badge: "",
+            link: "https://www.facebook.com/help/contact/1280439701993164",
+            info: "Dear Meta Page Support,\n\nMy administrative control over the page/group was maliciously removed following a security breach.\n\n- Affected Page/Group URL: [URL]"
+        },
+        {
+            id: '12',
+            cat: 'harassment',
+            name: "Cyberbullying & Defamation Report",
+            desc: "Contact Form 274459462613911",
+            sub: "সাইবার বুলিং ও হয়রানি নিবারণ",
+            badge: "",
+            link: "https://www.facebook.com/help/contact/274459467207391",
+            info: "Dear Safety Operations,\n\nReporting severe cyberbullying, hate speech, and targeted harassment campaign against my profile.\n\n- Violating Content Link: [URL]"
+        },
+        {
+            id: '13',
+            cat: 'harassment',
+            name: "NCII & Adult Content Report",
+            desc: "Contact Form 383679321740945 & StopNCII Portal",
+            sub: "অন্তরঙ্গ ছবি/ভিডিও (NCII) অপসারন ও প্ল্যাটফর্ম রিমুভ",
+            badge: "",
+            link: "https://stopncii.org/",
+            info: "Dear Safety Team,\n\nReporting distribution of non-consensual intimate imagery (NCII) and explicit media violating emergency safety policies.\n\n- Case Reference / File ID: [REF]"
+        },
+        {
+            id: '14',
+            cat: 'copyright',
+            name: "DMCA Copyright Report",
+            desc: "Contact Form 1758255661104383",
+            sub: "বিজ্ঞাপিত কপিরাইট নোটিশ",
+            badge: "",
+            link: "https://www.facebook.com/help/contact/538600989508933",
+            info: "DMCA Compliance Agent,\n\nFormal notice of copyright infringement under the Digital Millennium Copyright Act. Unauthorized replication of original assets.\n\n- Infringing URL: [URL]"
+        },
+        {
+            id: '15',
+            cat: 'copyright',
+            name: "Trademark Protection",
+            desc: "Contact Form 63436770043106",
+            sub: "ট্রেডমার্ক ও ব্র্যান্ড স্বত্ব সুরক্ষা রিপোর্ট",
+            badge: "Trademark",
+            link: "https://www.facebook.com/help/contact/63436770043106",
+            info: "Trademark Legal Team,\n\nReporting unauthorized commercial use and infringement of registered trademark rights.\n\n- Infringing Profile/Page URL: [URL]"
+        },
+        {
+            id: '16',
+            cat: 'appeal',
             name: "Disabled ID Appeal",
             desc: "Contact Form 260749603972907",
             sub: "ডিজেবল ফেসবুক আইডি ফিরিয়ে আনার আপিল",
-            badge: "Facebook",
-            badgeClass: "fb",
+            badge: "Appeal",
             link: "https://www.facebook.com/help/contact/260749603972907",
-            info: "Dear Meta Review Team,\n\nMy personal Facebook account was incorrectly disabled due to an automated error. Please restore access.\n\n- Profile URL: [URL]"
+            info: "Dear Meta Review Team,\n\nMy personal Facebook account was incorrectly disabled due to an automated error. It follows all community guidelines. Please restore access.\n\n- Profile URL: [URL]"
         },
         {
-            id: 'fb_5',
-            cat: 'facebook',
-            name: "Copyright Infringement Report",
-            desc: "Meta Request 1523801815366035",
-            sub: "কপিরাইট ও ইন্টেলেকচুয়াল প্রপার্টি রিপোর্ট",
-            badge: "Facebook",
-            badgeClass: "fb",
-            link: "https://www.facebook.com/help/contact/1523801815366035",
-            info: "Dear Meta Copyright Agent,\n\nI am reporting direct copyright infringement of intellectual property owned by me.\n\n- Original Proof: [ORIGINAL_LINK]\n- Infringing URL: [INFRINGER_URL]"
+            id: '17',
+            cat: 'link',
+            name: "Ineligible Notice Appeal",
+            desc: "Contact Form 317389574998690",
+            sub: "ইনইিজিবল (Not Eligible) র্যাপিন আপিল",
+            badge: "",
+            link: "https://www.facebook.com/help/contact/357439354626090",
+            info: "Dear Monetization Support,\n\nAppealing partner monetization restriction or false ineligibility status on our page. All content complies with standard guidelines.\n\n- Page URL: [URL]"
         },
         {
-            id: 'fb_6',
-            cat: 'facebook',
-            name: "Legal Removal Request",
-            desc: "Contact Form 319149701968527",
-            sub: "আইনি অপসারণ অনুরোধ (Legal Request)",
-            badge: "Facebook",
-            badgeClass: "fb",
-            link: "https://www.facebook.com/help/contact/319149701968527",
-            info: "Dear Meta Legal Team,\n\nI am submitting a formal legal removal request for content that infringes upon legal rights and violates safety policies.\n\n- Infringing URL: [URL]"
+            id: '18',
+            cat: 'security',
+            name: "Scam & Phishing Report",
+            desc: "Security & Phishing Incident Form",
+            sub: "প্রতারণা ও ফিশিং অ্যাকাউন্ট নিবারণ",
+            badge: "Security",
+            link: "https://www.facebook.com/help/contact/306714279745974",
+            info: "Meta Security Operations,\n\nReporting malicious phishing activity, fraudulent schemes, and scam links targeting users.\n\n- Scam Profile/URL: [URL]"
         },
         {
-            id: 'hl_1',
-            cat: 'helpline',
-            name: "Help Line - Signal Hackers CSB",
-            desc: "Direct Support Channels",
-            sub: "Telegram: @Signalhackers • WhatsApp: 01679164271",
-            badge: "Helpline",
-            badgeClass: "",
-            link: "https://wa.me/8801679164271",
-            info: "সরাসরি যোগাযোগের মাধ্যম (WhatsApp - Telegram - Facebook):\n- WhatsApp: https://wa.me/8801679164271\n- Telegram: https://t.me/Signalhackers\n- Facebook: https://www.facebook.com/signalhackerscsb6474"
+            id: '19',
+            cat: 'harassment',
+            name: "Underage Child Report",
+            desc: "Contact Form 209046679279097",
+            sub: "১৩ বছরের কম বয়সী ইউজারের অ্যাকাউন্ট আইডি রিপোর্ট",
+            badge: "",
+            link: "https://www.facebook.com/help/contact/209046679279097",
+            info: "Safety Operations,\n\nReporting an account that belongs to a minor under the age of 13, violating minimum age requirements.\n\n- Profile URL: [URL]"
+        },
+        {
+            id: '20',
+            cat: 'link',
+            name: "Deceased Person Memorial",
+            desc: "Contact Form 228813247197482",
+            sub: "মৃত ব্যক্তির আইডি মেমোরিয়ালাইজ বা ডিলিট রিকোয়েস্ট",
+            badge: "",
+            link: "https://www.facebook.com/help/contact/234808336863543",
+            info: "Dear Meta Support,\n\nRequesting to memorialize or securely remove the account of a deceased individual based on verified documents.\n\n- Profile URL: [URL]"
+        },
+        {
+            id: '21',
+            cat: 'link',
+            name: "Facebook Identity Verification",
+            desc: "Contact Form 183000765122339",
+            sub: "ফেসবুক-আইডেন্টিটি ভেরিফিকেশন (আইডি কনফার্মেশন)",
+            badge: "",
+            link: "https://www.facebook.com/help/contact/183196578381907",
+            info: "Dear Verification Team,\n\nSubmitting official identification credentials to verify ownership and restore full standing to the account.\n\n- Profile URL: [URL]"
         }
     ];
 
     let currentCat = 'all';
+    let currentView = 'grid';
 
     function renderFolders(data) {
         const grid = document.getElementById('folderGrid');
@@ -610,11 +714,6 @@
 
         document.getElementById('totalCount').innerText = filtered.length + ' টি প্রাপ্ত';
 
-        if(filtered.length === 0) {
-            grid.innerHTML = '<div style="grid-column: 1/-1; text-align: center; color: var(--text-muted); padding: 20px; font-size: 12px;">কোনো ফোল্ডার পাওয়া যায়নি!</div>';
-            return;
-        }
-
         filtered.forEach(item => {
             const div = document.createElement('div');
             div.className = 'folder-item';
@@ -624,7 +723,7 @@
                 <div class="folder-card" onclick="toggleFolder(this)">
                     <div class="folder-top">
                         <span class="folder-name">📁 ${item.name}</span>
-                        ${item.badge ? `<span class="badge ${item.badgeClass \vert{}\vert{} ''}">${item.badge}</span>` : ''}
+                        ${item.badge ? `<span class="badge">${item.badge}</span>` : ''}
                     </div>
                     <div class="folder-desc">${item.desc}</div>
                     <div class="folder-sub">${item.sub}</div>
@@ -633,12 +732,12 @@
                     <div class="content-block clearfix">
                         <div class="block-label">🔗 FROM LINK (অফিশিয়াল ফর্ম লিংক):</div>
                         <div class="block-value" id="link_${item.id}">${item.link}</div>
-                        <button class="copy-btn" onclick="copyText('link_${item.id}', this)">লিংক কপি</button>
+                        <button class="copy-btn" onclick="copyText('link_${item.id}', this)">ফর্ম লিংক কপি</button>
                     </div>
                     <div class="content-block clearfix">
-                        <div class="block-label">📝 ADDITIONAL (অতিরিক্ত বিবরণ):</div>
+                        <div class="block-label">📝 ADDITIONAL (অফিশিয়াল অতিরিক্ত বিবরণ):</div>
                         <div class="block-value text-area" id="info_${item.id}">${item.info}</div>
-                        <button class="copy-btn" onclick="copyText('info_${item.id}', this)">টেক্সট কপি</button>
+                        <button class="copy-btn" onclick="copyText('info_${item.id}', this)">Additional কপি</button>
                     </div>
                 </div>
             `;
@@ -659,25 +758,22 @@
         }
     }
 
-    function filterCat(cat, event) {
+    function filterCat(cat) {
         currentCat = cat;
         document.querySelectorAll('.cat-btn').forEach(btn => btn.classList.remove('active'));
-        if(event && event.currentTarget) {
-            event.currentTarget.classList.add('active');
-        }
+        event.currentTarget.classList.add('active');
         renderFolders(reportData);
     }
 
-    function switchView(view, event) {
-        if(event && event.currentTarget) {
-            document.querySelectorAll('.view-btn').forEach(btn => btn.classList.remove('active'));
-            event.currentTarget.classList.add('active');
-        }
+    function switchView(view) {
+        currentView = view;
+        document.querySelectorAll('.view-btn').forEach(btn => btn.classList.remove('active'));
+        event.currentTarget.classList.add('active');
         const grid = document.getElementById('folderGrid');
         if(view === 'card') {
             grid.style.gridTemplateColumns = '1fr';
         } else {
-            grid.style.gridTemplateColumns = window.innerWidth >= 600 ? '1fr 1fr' : '1fr';
+            grid.style.gridTemplateColumns = '1fr 1fr';
         }
     }
 
@@ -708,6 +804,7 @@
         }
     }
 
+    // Modal Control Functions
     function toggleModal(show) {
         const modal = document.getElementById('contactModal');
         modal.style.display = show ? 'flex' : 'none';
@@ -719,7 +816,6 @@
         }
     }
 
-    // Initial render on load
     renderFolders(reportData);
 </script>
 
